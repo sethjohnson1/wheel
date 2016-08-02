@@ -42,7 +42,7 @@
 var idleTimer = null;
 var idleState = false;
 //4 sec is nice, set to half for testing
-var idleWait = 500;
+var idleWait = 2000;
 var angle = 0;
 var lastinterval=0;
 $(function(){
@@ -60,7 +60,7 @@ $(function(){
 				angle+=1;
 				$("#wheel_img").rotate(angle);
 				$.getAngle();			
-			},50);
+			},80);
 			$(".nav_button").click(function() {
 				//stops the animation and animates to value of button
 				clearInterval(interval);
@@ -72,6 +72,29 @@ $(function(){
 					angle=parseInt($(this).attr("value"));
 					$.getAngle();
 				});
+				//now for the swiping logic...
+				var xinitial=null;
+				$("#wheel_img").swipe( {
+				//including all possible return values
+				swipeStatus:function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+					console.log(xinitial);
+					if (!xinitial) xinitial=event.changedTouches[0].clientX;
+					clearInterval(interval);
+					//console.log($( "#wheel_img" ).width());
+					//console.log(event.changedTouches[0].clientX);
+					//also figure out which half of screen they are on, the clientX doesn't work so well
+					if (direction=="up" && xinitial<676) angle+=1;		
+					if (direction=="down" && xinitial>=676) angle+=1;		
+
+					$("#wheel_img").rotate(angle);
+					$.getAngle();
+					 if (phase=="end") xinitial=null;
+					//console.log(direction);
+				},
+				// threshold:200,
+				//maxTimeThreshold:5000,
+				//fingers:'all'
+				}); 
                 idleState = true; }, idleWait);
     });
         $("body").trigger("mousemove");
@@ -80,6 +103,8 @@ $(function(){
 
 //gets the angle then hide/show content
 	$.getAngle=(function(){
+		if (angle>360) angle=0;
+		if (angle<0) angle=360;
 		if (angle>=315 || angle < 45) $("#test").html("Quadrant1");
 		else if (angle>=45 && angle < 135) $("#test").html("Quadrant2");
 		else if (angle>=135 && angle < 225) $("#test").html("Quadrant3");
@@ -88,6 +113,38 @@ $(function(){
 		
 	});
  
+//now for swiping logic... 
+$(function() {
+    $("#image_container").swipe( {
+	//including all possible return values
+	swipeStatus:function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+		val = event.target.id;
+		current_imgnum = parseInt(val.substr(val.indexOf("_") + 1));
+		if (direction=="right"){
+			counter=counter+increment;
+			if (counter>=(increment*(totalimages-1))) counter=0;
+			imgnum=Math.round(counter/increment);
+			
+		}
+		else if (direction=="left"){
+			counter=counter-increment;
+			if (counter<=0) counter=(totalimages-1)*increment;
+			imgnum=Math.round(counter/increment);
+		}
+		else imgnum=current_imgnum;
+
+		//a small delay might help, nothing now
+		$(".images").delay(0).hide();
+		$("#img_"+imgnum).show();
+	},
+
+       // threshold:200,
+        //maxTimeThreshold:5000,
+        //fingers:'all'
+      });
+	  //show the first image
+	  $("#img_0").fadeIn();
+});
 
 	//add this to jQuery namespace and it can be called globally
 		$.animateHand=function() {
@@ -125,57 +182,5 @@ $(function(){
 			});
 		}
 	$(document).ready(function(){
-	
-	  var slidenumber=0;
-	 // $.animateHand();
-  
-      $('#slides').slidesjs({
-		  //use CSS as well
-        width: 1645,
-        height: 1050,
-        navigation: {
-			active: false,
-			effect: "slide"
-		},
-		pagination:{
-			active:false,
-			effect: "slide"
-		},
-		play:{
-			active:false,
-			effect: "fade",
-			interval: 10000,
-			//auto: true,
-			restartDelay:10000,
-			
-		},
-		callback:{
-			start: function(s){
-
-			},
-			complete: function(a){
-				//hide the hand and show the button
-				if (a==1){
-					$("#startover").hide();
-				}
-				else{
-					//hide the hand otherwise animation gets screwed up
-					$("#hand").hide();
-					$("#startover").show();
-				}
-				
-				
-				//console.log($("#img_0").css('z-index'));
-				//console.log(a);
-			}
-		}
-		/* if the effect is too slow and they swipe while its going it blanks out for a few moments
-		,effect:{
-			fade:{
-				speed:1500,
-				crossfade:true
-			}
-		}*/
-      });
 
 	});
