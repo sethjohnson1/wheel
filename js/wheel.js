@@ -1,5 +1,5 @@
 	$(function() {    
-		  $("#wheel_img").swipe( {
+/*		  $("#wheel_img").swipe( {
         swipeStatus:function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection)
         {
           var str = "<h4>Swipe Phase : " + phase + "<br/>";
@@ -8,6 +8,7 @@
           str += "Distance from inital touch: " + distance + "<br/>";
           str += "Duration of swipe: " + duration + "<br/>";
           str += "Fingers used: " + fingers + "<br/></h4>";
+          str += "<h2>distance/duration: " + distance/duration + "<br/></h2>";
           //Here we can check the:
           //phase : 'start', 'move', 'end', 'cancel'
           //direction : 'left', 'right', 'up', 'down'
@@ -28,12 +29,13 @@
             str +="<br/>Handler not triggered. <br/> One or both of the thresholds was not met "
           if (phase=="end")
             str +="<br/>Handler was triggered."
-          $("#test").html(str);
+          $("#test2").html(str);
         },
         threshold:200,
         maxTimeThreshold:5000,
         fingers:'all'
       });
+	  */
     });
 
 
@@ -71,25 +73,35 @@ $(function(){
 					//reset the angle here so it doesn't jump around when it moves
 					angle=parseInt($(this).attr("value"));
 					$.getAngle();
-				});
+				});//track initial swipe
+				var iswipe=null;
 				//now for the swiping logic...
-				var xinitial=null;
 				$("#wheel_img").swipe( {
+				
 				//including all possible return values
 				swipeStatus:function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
-					console.log(xinitial);
-					if (!xinitial) xinitial=event.changedTouches[0].clientX;
-					clearInterval(interval);
-					//console.log($( "#wheel_img" ).width());
-					//console.log(event.changedTouches[0].clientX);
-					//also figure out which half of screen they are on, the clientX doesn't work so well
-					if (direction=="up" && xinitial<676) angle+=1;		
-					if (direction=="down" && xinitial>=676) angle+=1;		
-
+					if (!iswipe) iswipe=direction;
+					//simple, just based on initial swipe
+					if (iswipe=="up" || iswipe=="right") angle+=3;			
+					if (iswipe=="down" || iswipe=="left") angle-=3;			
 					$("#wheel_img").rotate(angle);
 					$.getAngle();
-					 if (phase=="end") xinitial=null;
-					//console.log(direction);
+					clearInterval(interval);
+					
+					//temp for testing flinging
+					fling=distance/duration;
+					//$("#test2").html("<h2>"+distance/duration+"</h2>");
+					
+					if (phase=="end"){
+						iswipe=null;
+						//this is a fling from my tests, larger number is more agressive fling
+						if ((fling)>2){
+							dur=fling*500;
+							spd=5000-dur;
+							for ($i=0;$i<100;$i++) $.flingWheel(spd,"easeOutElastic");
+							setInterval(function(){	location.reload()},dur);
+						}
+					}
 				},
 				// threshold:200,
 				//maxTimeThreshold:5000,
@@ -105,47 +117,40 @@ $(function(){
 	$.getAngle=(function(){
 		if (angle>360) angle=0;
 		if (angle<0) angle=360;
-		if (angle>=315 || angle < 45) $("#test").html("Quadrant1");
-		else if (angle>=45 && angle < 135) $("#test").html("Quadrant2");
-		else if (angle>=135 && angle < 225) $("#test").html("Quadrant3");
-		else if (angle>=135 && angle < 315) $("#test").html("Quadrant4");
-		else $("#test").html("No-mans-Land");
-		
+		if (angle>=315 || angle < 45) {
+			$(".quadrant").hide();
+			$("#quadrant1").show();
+		}
+		else if (angle>=45 && angle < 135){$(".quadrant").hide(); $("#quadrant2").show();}
+		else if (angle>=135 && angle < 225) {$(".quadrant").hide(); $("#quadrant3").show();}
+		else if (angle>=135 && angle < 315) {$(".quadrant").hide(); $("#quadrant4").show();}
+		else $(".quadrant").html("Error with some math somewhere.");
+	});
+	
+	$.flingWheel=(function(speed,easing){
+		fx=event.changedTouches[0].clientX;
+		fy=event.changedTouches[0].clientY;
+		//console.log('fling! x:'+$(window).width());
+		//>=65 forward, <64 back
+		//console.log(event.changedTouches[0].clientX);	
+		//positive Y value is DOWN
+		//console.log(event.changedTouches[0].clientY);	
+		console.log($("#wheel_img").position());	
+		iposition=$("#wheel_img").offset();	
+		//console.log($("#wheel_img").offset());
+		//if (fx>=65){
+			fleft=Math.floor((Math.random() * ($("body").width())) + 100);
+			ftop=Math.floor((Math.random() * ($("body").height())) + 100);
+			$( "#wheel_img" ).css("position","absolute");
+			$( "#wheel_img" ).animate({
+				//opacity: 0.55
+				top:ftop,left:fleft
+			}, speed,easing, function() {
+				return;
+			});
+		//}
 	});
  
-//now for swiping logic... 
-$(function() {
-    $("#image_container").swipe( {
-	//including all possible return values
-	swipeStatus:function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
-		val = event.target.id;
-		current_imgnum = parseInt(val.substr(val.indexOf("_") + 1));
-		if (direction=="right"){
-			counter=counter+increment;
-			if (counter>=(increment*(totalimages-1))) counter=0;
-			imgnum=Math.round(counter/increment);
-			
-		}
-		else if (direction=="left"){
-			counter=counter-increment;
-			if (counter<=0) counter=(totalimages-1)*increment;
-			imgnum=Math.round(counter/increment);
-		}
-		else imgnum=current_imgnum;
-
-		//a small delay might help, nothing now
-		$(".images").delay(0).hide();
-		$("#img_"+imgnum).show();
-	},
-
-       // threshold:200,
-        //maxTimeThreshold:5000,
-        //fingers:'all'
-      });
-	  //show the first image
-	  $("#img_0").fadeIn();
-});
-
 	//add this to jQuery namespace and it can be called globally
 		$.animateHand=function() {
 		//$("#hand").css(	"bottom","-148px");
@@ -182,5 +187,6 @@ $(function() {
 			});
 		}
 	$(document).ready(function(){
-
+		$("#quadrant1").attr("class","quadrant active");
+		$("#quadrant1").show();
 	});

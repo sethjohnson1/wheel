@@ -28,6 +28,13 @@ if (empty($image)) foreach (glob('slideshow_imgs/*.jpg') as $key=>$filename) $im
    <button class="nav_button" value=90>Two</button>
    <button class="nav_button" value=180>Three</button>
    <button class="nav_button" value=270>Four</button>
+   
+   <div id="quadrant1" class="quadrant"></div>
+   <div id="quadrant2" class="quadrant"></div>
+   <div id="quadrant3" class="quadrant"></div>
+   <div id="quadrant4" class="quadrant"></div>
+   
+   <div id="test2"></div>
    <div id="test"></div>
 	<img id="hand" src="pointing-finger.png" alt="swiping hand" />
 <!-- a href="index.php" id="startover" class="wgwa-btn">&laquo; Start Over</a -->
