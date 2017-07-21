@@ -127,65 +127,7 @@ $(function(){
 		else $(".quadrant").html("Error with some math somewhere.");
 	});
 	
-	$.flingWheel=(function(speed,easing){
-		fx=event.changedTouches[0].clientX;
-		fy=event.changedTouches[0].clientY;
-		//console.log('fling! x:'+$(window).width());
-		//>=65 forward, <64 back
-		//console.log(event.changedTouches[0].clientX);	
-		//positive Y value is DOWN
-		//console.log(event.changedTouches[0].clientY);	
-		console.log($("#wheel_img").position());	
-		iposition=$("#wheel_img").offset();	
-		//console.log($("#wheel_img").offset());
-		//if (fx>=65){
-			fleft=Math.floor((Math.random() * ($("body").width())) + 100);
-			ftop=Math.floor((Math.random() * ($("body").height())) + 100);
-			$( "#wheel_img" ).css("position","absolute");
-			$( "#wheel_img" ).animate({
-				//opacity: 0.55
-				top:ftop,left:fleft
-			}, speed,easing, function() {
-				return;
-			});
-		//}
-	});
- 
-	//add this to jQuery namespace and it can be called globally
-		$.animateHand=function() {
-		//$("#hand").css(	"bottom","-148px");
-		//$("#hand").css(	"right","314px");
-		//show in case it was hidden
-		$("#hand").show();
-		$( "#hand" ).animate({
-			opacity: 0.55
-			,bottom: "-40px",
-		}, 2000,"easeOutQuint", function() {
-			//first animation done
-			$( "#hand" ).animate({
-			//opacity: .55,
-			right: "791px",
-			}, 1500, 'easeOutQuint', function() {
-			// second done, now fade out
-				$( "#hand" ).animate({
-				opacity: 0
-				}, 5000, function() {
-					//third done, reset then do again
-					$( "#hand" ).animate({
-						bottom: "-148px",
-						right:"314px"
-						}, 5, function() {
-							//console.log(slidenumber);						
-							//do the claw thing, one out of 100
-							if (Math.floor((Math.random() * 2) + 100)==83) $("#hand").attr("src","claw_hand.png");
-							else $("#hand").attr("src","pointing-finger.png");
-							//notice NO parenthesis in setTimeout or it just calls the function immediately
-							setTimeout($.animateHand,5000);
-						});
-					});
-				});
-			});
-		}
+
 	$(document).ready(function(){
 		$("#quadrant1").attr("class","quadrant active");
 		$("#quadrant1").show();
