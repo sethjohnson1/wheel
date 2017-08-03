@@ -6,7 +6,7 @@ body{
 
 #wheel{
 	margin: 0 auto;
-	width:74%;
+	width:60%;
 	position: relative;
 	@include rotate(0deg);
 	
@@ -21,7 +21,7 @@ body{
 	margin: 112px auto;
 	display:block;
 	position:relative;
-	width:64%;
+	width:70%;
 	//margin-top:111px;
 }
 
@@ -51,7 +51,7 @@ body{
 .quad_label_1{
 	@include rotate(90deg);
 	top: 34%;
-	right: -5%;
+	right: -14%;
 }
 
 .quad_label_2{
@@ -63,22 +63,12 @@ body{
 .quad_label_3{
 	@include rotate(270deg);
 	top: 35%;
-	//left: ;
-}
-
-.subNavContent{
-	min-height:8%;
-	.subnav_active{
-		color: $burnt-orange;
-	}
-	h3{
-		font-size:4vw;
-	}
+	left: -7%;
 }
 
 .contentRow{
-	min-height:10%;
-	
+	//min-height:10%;
+	margin-bottom:2%;
 	.inner{
 		background-image: url('../img/backgrounds/splattered_paper_1920_wide.jpg');
 		width:97%;
@@ -88,14 +78,15 @@ body{
 	
 	.contentRow-content{
 		background-color:$white-rgba;
-		height:49%;
+		//you must also change this in the JS
+		height:39%;
 		overflow-y: scroll;
 		padding:25px;
 	}
 	
 	.contentRow_expandBtn{
 		.btn{
-			font-size: 4vw;
+			font-size: 1vw;
 			color: white;
 			background-color: $burnt-orange;
 				&:hover, &:active{
@@ -104,11 +95,48 @@ body{
 			}
 		position: absolute;
 		bottom: 0;
-		left: 75%;
+		left: 92%;
 	}
 	
 	
 }
+
+.subNavContent{
+	//min-height:17%;
+	.icon_button{
+		border-bottom: 2px solid black;
+	}
+	.subnav_active{
+		color: $burnt-orange;
+		border-bottom: 2px solid $burnt-orange;
+	}
+	h3{
+		font-size:4vw;
+	}
+	
+	
+	
+	
+    margin-bottom: 8%;
+	height:12%;
+	
+}
+
+.subNavIcon{
+
+	h3{
+		margin-top:-25%;
+		font-family: $amatic;
+		font-weight:700;
+		margin-left:5%;
+	}
+	
+	img{
+		max-width:71%;
+	}
+}
+
+
 
 .wheelRow{
 

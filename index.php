@@ -1,4 +1,17 @@
 <?
+/**
+SOUND INFORMATION:
+common:
+wheelsnd when opened
+droplet on tap
+
+music has sound files that play on repeat in background
+
+tcm is adversity and renewal, not sure what it stands for
+
+
+*/
+
 //get the images
 $image=array();
 foreach (glob('slideshow_imgs/*.JPG') as $key=>$filename) $image[$key]=$filename;
@@ -12,7 +25,7 @@ $lomg['Spring']['planting']=['blogid'=>'40255'];
 $lomg['Spring']['gathering_willows']=['blogid'=>'40181'];
 $lomg['Spring']['tobacco_ceremony']=['blogid'=>'39994'];
 $lomg['Spring']['hunting']=['blogid'=>'40221'];
-$lomg['Summer']['tending_the_gardens']=['blogid'=>'38396'];
+$lomg['Summer']['gardening']=['blogid'=>'38396'];
 $lomg['Summer']['hunting']=['blogid'=>'40147'];
 $lomg['Summer']['gathering']=['blogid'=>'40147'];
 $lomg['Summer']['celebrations']=['blogid'=>'40147'];
@@ -24,7 +37,7 @@ $lomg['Winter']['tipis']=['blogid'=>'40147'];
 $lomg['Winter']['mobility']=['blogid'=>'40147'];
 $lomg['Winter']['toys_and_games']=['blogid'=>'40147'];
 $lomg['Winter']['earth_lodges']=['blogid'=>'39994'];
-$shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
+$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lomg];
 
 ?>
 <html>
@@ -39,7 +52,7 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
 <script type="text/javascript" src="js/jquery.touchy.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- script type="text/javascript" src="js/wheel.js"></script -->
-<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -72,7 +85,7 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
   <div class="col-xs-12">
    <div id="wheel">
    <?php $cnt=0;
-   foreach ($shows[0]['options'] as $title=>$v):
+   foreach ($show['options'] as $title=>$v):
 	if ($cnt==0) $angle_val=0;	
 	if ($cnt==1) $angle_val="-90";
 	if ($cnt==2) $angle_val="-180";
@@ -85,8 +98,13 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
    ?>
 
    <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="img/icons_cropped/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" />
    <h3><?=str_replace("_"," ",$k)?></h3>
-   <p><?=$sub['blogid']?></p>
+   </div>
+   
    
    </div>
    <?php endforeach ?>
@@ -103,7 +121,7 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
    <button class="nav_button" value="-90">Summer</button>
    <button class="nav_button" value="-180">Fall</button>
    <button class="nav_button" value="90">Winter</button>
-   -- >
+   -->
 
   </div>
   </div><!-- /wheel row -->
@@ -137,6 +155,7 @@ $(document).ready(function(){
 		//angle=parseInt($(this).attr("value"));
 		//
 		
+		collapseNav();
 	});
 	/*
 	$(".icon_button").click(function() {
@@ -171,12 +190,12 @@ $(document).ready(function(){
 	var collapsedContent=$('.contentRow_expandBtn').html();
 	
 	function collapseNav(){
-		$( ".contentRow-content" ).animate({"height": "49%"}, 1000);
+		$( ".contentRow-content" ).animate({"height": "39%"}, 1000);
 		$('.contentRow_expandBtn').html(collapsedContent);
 	}
 	
 	function expandNav(){
-		$( ".contentRow-content" ).animate({"height": "77%"}, 1000);
+		$( ".contentRow-content" ).animate({"height": "74%"}, 1000);
 		$('.contentRow_expandBtn').html('<span class="btn btn-orange"><span class="glyphicon glyphicon-triangle-top"></span> Collapse</span>');
 	}
 	
@@ -295,7 +314,7 @@ $(document).ready(function(){
 	}
 	
 	function fetchBlogPosts(){
-		<?php foreach ($shows[0]['options'] as $title=>$v): ?>
+		<?php foreach ($show['options'] as $title=>$v): ?>
 		<?php foreach ($v as $k=>$sub): ?>
 		//$(document).ready(function() { 
 		$.ajax({
