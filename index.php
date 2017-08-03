@@ -8,27 +8,28 @@ if (empty($image)) foreach (glob('slideshow_imgs/*.jpg') as $key=>$filename) $im
 //some basic variables
 $lomg=[];
 //$lomg['Spring']['subtitle']='introduction';
-$lomg['Spring']['planting']=['blogid'=>''];
-$lomg['Spring']['gathering willows']=['blogid'=>''];
-$lomg['Spring']['tobacco ceremony']=['blogid'=>''];
-$lomg['Spring']['hunting']=['blogid'=>''];
-$lomg['Summer']['tending the gardens']=['blogid'=>''];
-$lomg['Summer']['hunting']=['blogid'=>''];
-$lomg['Summer']['gathering']=['blogid'=>''];
-$lomg['Summer']['celebrations']=['blogid'=>''];
-$lomg['Fall']['hunting']=['blogid'=>''];
-$lomg['Fall']['gathering']=['blogid'=>''];
-$lomg['Fall']['harvesting']=['blogid'=>''];
-$lomg['Fall']['trade']=['blogid'=>''];
-$lomg['Winter']['tipis']=['blogid'=>''];
-$lomg['Winter']['mobility']=['blogid'=>''];
-$lomg['Winter']['toys and games']=['blogid'=>''];
-$lomg['Winter']['earth lodges']=['blogid'=>''];
+$lomg['Spring']['planting']=['blogid'=>'40255'];
+$lomg['Spring']['gathering_willows']=['blogid'=>'40181'];
+$lomg['Spring']['tobacco_ceremony']=['blogid'=>'39994'];
+$lomg['Spring']['hunting']=['blogid'=>'40221'];
+$lomg['Summer']['tending the gardens']=['blogid'=>'38396'];
+$lomg['Summer']['hunting']=['blogid'=>'40147'];
+$lomg['Summer']['gathering']=['blogid'=>'40147'];
+$lomg['Summer']['celebrations']=['blogid'=>'40147'];
+$lomg['Fall']['hunting']=['blogid'=>'40147'];
+$lomg['Fall']['gathering']=['blogid'=>'40147'];
+$lomg['Fall']['harvesting']=['blogid'=>'40147'];
+$lomg['Fall']['trade']=['blogid'=>'40147'];
+$lomg['Winter']['tipis']=['blogid'=>'40147'];
+$lomg['Winter']['mobility']=['blogid'=>'40147'];
+$lomg['Winter']['toys_and_games']=['blogid'=>'40147'];
+$lomg['Winter']['earth_lodges']=['blogid'=>'39994'];
 $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
 
 ?>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/wheel.min.css" />
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.slides.min.js"></script>
@@ -39,12 +40,32 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- script type="text/javascript" src="js/wheel.js"></script -->
 <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<!-- The width of the container is the width of the image divided by the nabi width (1656/1920) -->
-<div class="spacing"></div>
-  <div class="container">
+
+<div class="container-fluid">
+
+<div class="row contentRow">
+<div class="col-xs-12">
+<div class="inner">
+	<div class="contentRow-content">
+	</div>
+
+<div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span></div>	
+</div>
+</div>
+</div><!-- content row -->
+
+<div class="row subNavContent">
+<div class="col-xs-12">
+
+</div>
+</div><!-- subNavContent icons row -->
+
+
+  <div class="row wheelRow">
+  <div class="col-xs-12">
    <div id="wheel">
    <?php $cnt=0;
    foreach ($shows[0]['options'] as $title=>$v):
@@ -52,26 +73,36 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
 	if ($cnt==1) $angle_val="-90";
 	if ($cnt==2) $angle_val="-180";
 	if ($cnt==3) $angle_val="90";
+	
+	//now make columns that can be jQuery'd into above nav rows?>
+	<div class="Content<?=$cnt?>-navs hidden">
+	<?php
+	foreach ($v as $k=>$sub):
    ?>
-   <div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav_button quad_label quad_label_<?=$cnt?>"><h2><?=$title?></h2></div>
+
+   <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
+   <h3><?=$k?></h3>
+   <p><?=$sub['blogid']?></p>
+   
+   </div>
+   <?php endforeach ?>
+   </div><!-- /nav group -->
+   <div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button quad_label quad_label_<?=$cnt?>"><h2><?=$title?></h2></div>
 
    <?php 
    $cnt++;
    endforeach; ?>
-   <img src="img/wheel_large.png" alt="wheel" id="wheel_img"/>
+   <img class="img-responsive" src="img/wheel_large_shadow.png" alt="wheel" id="wheel_img"/>
    </div>
+   <!-- old testing buttons
    <button class="nav_button" value="0">Spring</button>
    <button class="nav_button" value="-90">Summer</button>
    <button class="nav_button" value="-180">Fall</button>
    <button class="nav_button" value="90">Winter</button>
-   
-   
-   <div id="quadrant1" class="quadrant"></div>
-   <div id="quadrant2" class="quadrant"></div>
-   <div id="quadrant3" class="quadrant"></div>
-   <div id="quadrant4" class="quadrant"></div>
+   -- >
 
   </div>
+  </div><!-- /wheel row -->
 	<style>
 	/* this will prevent scrolling when the element is rotated, it also alleviates the Chrome console issue about element being treated as passive  */
 		#wheel{
@@ -81,6 +112,10 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
   <script>
   
 $(document).ready(function(){
+
+	//preload all of the content
+	fetchBlogPosts();
+
 	updateAppearance(0);
 	$(".nav_button").click(function() {
 		//stops the animation and animates to value of button
@@ -89,6 +124,9 @@ $(document).ready(function(){
 		$("#wheel").rotate({
 			angle:"-90",
 			animateTo: parseInt($(this).attr("value")),
+			duration:3000,
+			easing: $.easing.easeInOutSine,
+			easing: $.easing.easeInOutCubic,
 			callback: function(){   getAngle(); }
 			});
 		//reset the angle here so it doesn't jump around when it moves
@@ -96,6 +134,49 @@ $(document).ready(function(){
 		//
 		
 	});
+	/*
+	$(".icon_button").click(function() {
+		console.log($(this).attr('data-toggle'));
+		$('.ajaxContent').fadeOut();
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+	});
+	*/
+	$(document).off('click', '.icon_button').on('click', '.icon_button',function(e) {
+		//
+	//	console.log($(this).attr('data-toggle'));
+		$('.ajaxContent').hide();
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		$('.icon_button').removeClass('subnav_active');
+		$(this).addClass('subnav_active');
+		
+	});
+	$(".contentRow_expandBtn").click(function() {
+		//console.log($(this).hasClass('expanded'));
+		if ($(this).hasClass('expanded')){
+			collapseNav();
+			$(this).removeClass('expanded');
+		}
+		else{
+			expandNav();
+			$(this).addClass('expanded');
+		}
+		
+	});
+	
+	var collapsedContent=$('.contentRow_expandBtn').html();
+	
+	function collapseNav(){
+		$( ".contentRow-content" ).animate({"height": "49%"}, 1000);
+		$('.contentRow_expandBtn').html(collapsedContent);
+	}
+	
+	function expandNav(){
+		$( ".contentRow-content" ).animate({"height": "77%"}, 1000);
+		$('.contentRow_expandBtn').html('<span class="btn btn-orange"><span class="glyphicon glyphicon-triangle-top"></span> Collapse</span>');
+	}
+	
+	
 	var degs = 0,
 	velocity = 0,
 	$target = $('#wheel'),
@@ -177,39 +258,24 @@ $(document).ready(function(){
 		// var angle = Math.round(Math.asin(sin) * (180/Math.PI));
 		var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
 
-		console.log('Rotate: ' + angle + 'deg');
-		//quadrant 1=0 to 90
-		//quad 2= 90 to 179
-		//quad 3 -179 to -90
-		//quad 4 = -90 to 0
+		//console.log('Rotate: ' + angle + 'deg');
 		
-	/*	if (angle>360) angle=0;
-		if (angle<0) angle=360;
-		if (angle>=315 || angle < 45) {
-			$(".quadrant").hide();
-			$("#quadrant1").show();
-		}
-		else if (angle>=45 && angle < 135){$(".quadrant").hide(); $("#quadrant2").show();}
-		else if (angle>=135 && angle < 225) {$(".quadrant").hide(); $("#quadrant3").show();}
-		else if (angle>=135 && angle < 315) {$(".quadrant").hide(); $("#quadrant4").show();}
-		else $(".quadrant").html("Error with some math somewhere.");
-		*/
 		if (angle<=45 && angle>-45) {
-			console.log('spring');
+			//console.log('spring');
 			updateAppearance(0);
 		}
 		if (angle<=-45) {
-			console.log('summer');
+			//console.log('summer');
 			updateAppearance(1);
 		}
 		
 		if (angle<-137 || angle>=145){
-			console.log('Fall');
+			//console.log('Fall');
 			updateAppearance(2);
 		}
 		
 		if (angle<145 && angle>45){
-			console.log('winter');
+			//console.log('winter');
 			updateAppearance(3);
 		}
 		
@@ -220,21 +286,39 @@ $(document).ready(function(){
 	function updateAppearance(quad){
 		$('.quad_label').removeClass('quad_active');
 		$('.quad_label_'+quad).addClass('quad_active');
+		var items=$('.Content'+quad+'-navs').html();
+		$('.subNavContent').html(items);
 	}
 	
-	/*$.getAngle=(function(){
-		if (angle>360) angle=0;
-		if (angle<0) angle=360;
-		if (angle>=315 || angle < 45) {
-			$(".quadrant").hide();
-			$("#quadrant1").show();
-		}
-		else if (angle>=45 && angle < 135){$(".quadrant").hide(); $("#quadrant2").show();}
-		else if (angle>=135 && angle < 225) {$(".quadrant").hide(); $("#quadrant3").show();}
-		else if (angle>=135 && angle < 315) {$(".quadrant").hide(); $("#quadrant4").show();}
-		else $(".quadrant").html("Error with some math somewhere.");
-	});
-  */
+	function fetchBlogPosts(){
+		<?php foreach ($shows[0]['options'] as $title=>$v): ?>
+		<?php foreach ($v as $k=>$sub): ?>
+		//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden <?=$title.'_'.$k?>">'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+			},
+			url:"https://centerofthewest.org/wp-json/posts/<?=$sub['blogid']?>/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+		<?php endforeach ?>
+		<?php endforeach ?>
+	}
+	
   </script>
 
 </body>
