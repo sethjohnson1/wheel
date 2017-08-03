@@ -4,6 +4,7 @@ SOUND INFORMATION:
 common:
 wheelsnd when opened
 droplet on tap
+moresnd_flute when 
 
 music has sound files that play on repeat in background
 
@@ -19,25 +20,45 @@ foreach (glob('slideshow_imgs/*.JPG') as $key=>$filename) $image[$key]=$filename
 if (empty($image)) foreach (glob('slideshow_imgs/*.jpg') as $key=>$filename) $image[$key]=$filename;
 
 //some basic variables
-$lomg=[];
+$lmg=[];
 //$lomg['Spring']['subtitle']='introduction';
-$lomg['Spring']['planting']=['blogid'=>'40255'];
-$lomg['Spring']['gathering_willows']=['blogid'=>'40181'];
-$lomg['Spring']['tobacco_ceremony']=['blogid'=>'39994'];
-$lomg['Spring']['hunting']=['blogid'=>'40221'];
-$lomg['Summer']['gardening']=['blogid'=>'38396'];
-$lomg['Summer']['hunting']=['blogid'=>'40147'];
-$lomg['Summer']['gathering']=['blogid'=>'40147'];
-$lomg['Summer']['celebrations']=['blogid'=>'40147'];
-$lomg['Fall']['hunting']=['blogid'=>'40147'];
-$lomg['Fall']['gathering']=['blogid'=>'40147'];
-$lomg['Fall']['harvesting']=['blogid'=>'40147'];
-$lomg['Fall']['trade']=['blogid'=>'40147'];
-$lomg['Winter']['tipis']=['blogid'=>'40147'];
-$lomg['Winter']['mobility']=['blogid'=>'40147'];
-$lomg['Winter']['toys_and_games']=['blogid'=>'40147'];
-$lomg['Winter']['earth_lodges']=['blogid'=>'39994'];
-$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lomg];
+$lmg['Spring']['planting']=['blogid'=>'40255'];
+$lmg['Spring']['gathering_willows']=['blogid'=>'40181'];
+$lmg['Spring']['tobacco_ceremony']=['blogid'=>'39994'];
+$lmg['Spring']['hunting']=['blogid'=>'40221'];
+$lmg['Summer']['gardening']=['blogid'=>'38396'];
+$lmg['Summer']['hunting']=['blogid'=>'40147'];
+$lmg['Summer']['gathering']=['blogid'=>'40147'];
+$lmg['Summer']['celebrations']=['blogid'=>'40147'];
+$lmg['Fall']['hunting']=['blogid'=>'40147'];
+$lmg['Fall']['gathering']=['blogid'=>'40147'];
+$lmg['Fall']['harvesting']=['blogid'=>'40147'];
+$lmg['Fall']['trade']=['blogid'=>'40147'];
+$lmg['Winter']['tipis']=['blogid'=>'40147'];
+$lmg['Winter']['mobility']=['blogid'=>'40147'];
+$lmg['Winter']['toys_and_games']=['blogid'=>'40147'];
+$lmg['Winter']['earth_lodges']=['blogid'=>'39994'];
+
+$bp=[];
+$bp['Preparations']['the_buffalo_tradition']=['blogid'=>'40255'];
+$bp['Preparations']['buffalo_dances']=['blogid'=>'40255'];
+$bp['Preparations']['organizing_the_hunt']=['blogid'=>'40255'];
+$bp['The_Hunt']['dog_days']=['blogid'=>'40255'];
+$bp['The_Hunt']['horses']=['blogid'=>'40255'];
+$bp['The_Hunt']['decline_of_buffalo']=['blogid'=>'40255'];
+$bp['Back_to_Camp']['dividing_the_kill']=['blogid'=>'40255'];
+$bp['Back_to_Camp']['preparing_the_meat']=['blogid'=>'40255'];
+$bp['Back_to_Camp']['tanning_the_hide']=['blogid'=>'40255'];
+$bp['Back_to_Camp']['using_everything']=['blogid'=>'40255'];
+$bp['Giving_Thanks']['symbolism']=['blogid'=>'40255'];
+$bp['Giving_Thanks']['the_buffalo_today']=['blogid'=>'40255'];
+
+
+//set the show to anything here
+$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
+$show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
+//$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
+//$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
 
 ?>
 <html>
@@ -109,7 +130,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lomg];
    </div>
    <?php endforeach ?>
    </div><!-- /nav group -->
-   <div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button quad_label quad_label_<?=$cnt?>"><h2><?=$title?></h2></div>
+   <div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button quad_label quad_label_<?=$cnt?>"><h2><?=str_replace("_"," ",$title)?></h2></div>
 
    <?php 
    $cnt++;
@@ -125,6 +146,15 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lomg];
 
   </div>
   </div><!-- /wheel row -->
+  
+  <div class="toolbar">
+  <span class="glyphicon glyphicon-minus-sign changeFontSize"></span>
+  <span class="glyphicon glyphicon-plus-sign changeFontSize"></span>
+  <span class="glyphicon glyphicon-volume-up toggleVolume"></span>
+  
+  </div>
+  
+  </div><!-- /container -->
 	<style>
 	/* this will prevent scrolling when the element is rotated, it also alleviates the Chrome console issue about element being treated as passive  */
 		#wheel{
@@ -134,7 +164,27 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lomg];
   <script>
   
 $(document).ready(function(){
-
+	//preload audio
+	
+	var playAudio=true;
+	
+	var wheelAudio = document.createElement('audio');
+    wheelAudio.setAttribute('src', 'media/fx/wheelsnd.mp3');
+	
+	var dropletAudio = document.createElement('audio');
+    dropletAudio.setAttribute('src', 'media/fx/drop_click.mp3');
+	
+	var fluteAudio = document.createElement('audio');
+    fluteAudio.setAttribute('src', 'media/fx/moresnd_flute.mp3');
+	
+	var musicAudio = document.createElement('audio');
+    musicAudio.setAttribute('src', 'media/music/<?=$show['abbr']?>.mp3');
+    
+    musicAudio.addEventListener('ended', function() {
+       // this.play();
+    }, false);
+	
+	
 	//preload all of the content, this would be for kiosk version. Web version make a function to load on demand
 	fetchBlogPosts();
 
@@ -143,27 +193,59 @@ $(document).ready(function(){
 		//stops the animation and animates to value of button
 		//clearInterval(interval);
 		getAngle();
+		if (playAudio) wheelAudio.play();
 		$("#wheel").rotate({
 			angle:"-90",
 			animateTo: parseInt($(this).attr("value")),
 			duration:3000,
 			easing: $.easing.easeInOutSine,
 			easing: $.easing.easeInOutCubic,
-			callback: function(){   getAngle(); }
+			callback: function(){ 
+				getAngle();
+				if (playAudio){
+					wheelAudio.pause();
+					musicAudio.play(); 
+				}
+			
+			}
 			});
 		//reset the angle here so it doesn't jump around when it moves
 		//angle=parseInt($(this).attr("value"));
 		//
 		
 		collapseNav();
+		
 	});
 	/*
-	$(".icon_button").click(function() {
+	$(".icon_button").click(function() 
 		console.log($(this).attr('data-toggle'));
 		$('.ajaxContent').fadeOut();
 		$('.'+$(this).attr('data-toggle')).fadeIn();
 	});
 	*/
+	$(document).off('click', '.changeFontSize').on('click', '.changeFontSize',function(e) {
+		if ($(this).hasClass('glyphicon-plus-sign')){
+			$( ".contentRow-content" ).animate({"font-size": "+=50%"}, 500);
+		}
+		else $( ".contentRow-content" ).animate({"font-size": "-=50%"}, 500);
+	});
+		
+	$(document).off('click', '.toggleVolume').on('click', '.toggleVolume',function(e) {
+		if ($(this).hasClass('glyphicon-volume-up')){
+			playAudio=false;
+			$(this).removeClass('glyphicon-volume-up');
+			$(this).addClass('glyphicon-volume-off');
+			musicAudio.pause();
+			wheelAudio.pause();
+		}
+		else {
+			playAudio=true;
+			$(this).removeClass('glyphicon-volume-off');
+			$(this).addClass('glyphicon-volume-up');
+			musicAudio.play();
+		}
+	});
+	
 	$(document).off('click', '.icon_button').on('click', '.icon_button',function(e) {
 		//
 	//	console.log($(this).attr('data-toggle'));
@@ -173,8 +255,11 @@ $(document).ready(function(){
 		$('.icon_button').removeClass('subnav_active');
 		$(this).addClass('subnav_active');
 		
+		if (playAudio) dropletAudio.play();
+		
 	});
 	$(".contentRow_expandBtn").click(function() {
+		if (playAudio) fluteAudio.play();
 		//console.log($(this).hasClass('expanded'));
 		if ($(this).hasClass('expanded')){
 			collapseNav();
