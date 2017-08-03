@@ -1,0 +1,23 @@
+@mixin ir() {
+	border: 0;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+	background-color: transparent;
+}
+
+@mixin include-custom-font($family: arial, $dir:sans, $weight: normal, $style: normal) {
+    @font-face{
+        font-family: $family;
+        src:url('../fonts/#{$dir}/#{$family}.eot');
+        src:url('../fonts/#{$dir}/#{$family}.eot?#iefix') format('embedded-opentype'),
+            url('../fonts/#{$dir}/#{$family}.woff') format('woff'),
+            url('../fonts/#{$dir}/#{$family}.svg#icon') format('svg');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@mixin em( $value: $base-size, $context: $base-size ) {
+	font-size: ($value / $context) + 0em;
+}

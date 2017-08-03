@@ -1,0 +1,52 @@
+/**
+ * Center of the West - Wheel for the PIM
+ * http://centerofthewest.org/
+ *
+ * Licensed under the GPLv2+ license.
+ */
+/*
+Loading Core
+---------------------------------------------------------------------------------------------------- */
+@import "variables.scss";
+@import "css3-mixins.scss";
+@import "preboot.scss";
+@import "extras.scss"; 
+@import "typography.scss"; 
+
+/*
+HTML5 Reset: Normalizing & Float Resetting
+---------------------------------------------------------------------------------------------------- */
+@import "normalize.scss";
+
+/* Box Sizing
+--------------------------------------------- */
+
+*,
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+}
+
+/*
+Defaults
+---------------------------------------------------------------------------------------------------- */
+
+/*
+Structure and Layout
+---------------------------------------------------------------------------------------------------- */
+@import "base_styles";
+
+//@import "structure.scss";
+
+
+//@import "base.scss";
+
+//@import "drawer.scss";
+
+@import "mobile.scss";
+
+//@import "iscout.scss";
+
+//@import "corner-ribbons.scss";
+//@import "bbcw_font_style";

@@ -1,0 +1,44 @@
+/*
+this is not all the mobile stuff, but just what I am applying to fix the already somewhat working version. Someday I might clean up all this CSS, but this is the best way for now.
+*/
+
+/* this is the BS xs width */
+@media (max-width: $xs-width) {
+	.menu-primary-mobile{
+		font-size:1.8em;
+	}
+	.myExhibitSub{
+		padding:10px;
+		font-size:.8em;
+		font-size:.8em;
+	}
+	.actions{
+		width:100%;
+		font-size: 1.5em; 
+	}
+} 
+
+/* this is the mobile-menu breakpoint (sm and smaller) */
+@media (max-width: $site-width) { 
+	.exhibitmenu-row{
+		margin-right: 0;
+	}
+	
+	.form-control{
+		font-size:1em !important;
+	}
+	#___plusone_0{
+		width: 72px !important;
+	}
+	.share-links{
+		margin-left:-10px;
+	}
+	.fb-share-button{
+		width:36px;
+	}
+	
+	#mapTest{
+		margin-left:1px !important;
+		width:109% !important;
+	}
+} 

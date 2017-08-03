@@ -1,0 +1,65 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Brand colors
+$white:         #fff;
+$snow:          #f6f5f4;
+$antique-white: #ddd7d2;
+$beige:         #aa9c8f;
+$sandstone:     #766a62;
+$brown:         #6e3219;
+$burnt-orange:  #bd4f19;
+$warm-gray:     #ede9e7;
+$gray:          #898989;
+
+//sj - added these other brand colors
+
+$blue: #004250;
+$green: #035642;
+$red: #981e32;
+$purple: #532e60;
+$yellow:#c59217;
+
+//some extra colors graphics is using
+//bathroom icon
+$blue-gray: #678494;
+//party icons
+$light-green: #6bab56;
+
+$lime: #41ad49;
+
+
+// Scaffolding
+$body-background:         $warm-gray;
+$text-color:              $sandstone;
+
+// Links
+$link-color:              $burnt-orange;
+$link-color-hover:        darken($link-color, 15%);
+
+// Forms
+$input-color-placeholder: lighten($text-color, 25%);
+
+/* sj- changed this to match bootstrap, size md is >=992px */
+$site-width:            991px;
+$xs-width:            767px; /* bootstrap xs */ 
+
+$zoomify-width:            600px;
+
+// Breakpoints
+$breakpoint-site-width: "#{$site-width}";
+$breakpoint-zoomify-width: "#{$zoomify-width}";
+
+// MQs
+$mq-site-width:  "only screen and (max-width: #{$breakpoint-site-width})";
+$mq-zoomify-width:  "only screen and (max-width: #{$breakpoint-zoomify-width})";
+$mq-tablet-ipad:  "only screen and (min-device-width : 768px) and (max-device-width : 1024px)";/*iPads (portrait and landscape)*/
+$mq-smartphone:  "only screen and (min-device-width : 320px) and (max-device-width : 480px)";/*Smartphones (portrait and landscape)*/
+
+$mq-xs:  "only screen and (max-device-width : 767px)";/*bootstrap xs*/
+
+$grid-columns:          12;
+$grid-column-padding:   20px;
+$grid-float-breakpoint: 940px;
+
