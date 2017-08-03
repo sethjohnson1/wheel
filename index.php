@@ -85,7 +85,7 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
    ?>
 
    <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
-   <h3><?=$k?></h3>
+   <h3><?=str_replace("_"," ",$k)?></h3>
    <p><?=$sub['blogid']?></p>
    
    </div>
