@@ -12,7 +12,7 @@ $lomg['Spring']['planting']=['blogid'=>'40255'];
 $lomg['Spring']['gathering_willows']=['blogid'=>'40181'];
 $lomg['Spring']['tobacco_ceremony']=['blogid'=>'39994'];
 $lomg['Spring']['hunting']=['blogid'=>'40221'];
-$lomg['Summer']['tending the gardens']=['blogid'=>'38396'];
+$lomg['Summer']['tending_the_gardens']=['blogid'=>'38396'];
 $lomg['Summer']['hunting']=['blogid'=>'40147'];
 $lomg['Summer']['gathering']=['blogid'=>'40147'];
 $lomg['Summer']['celebrations']=['blogid'=>'40147'];
@@ -50,6 +50,10 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
 <div class="col-xs-12">
 <div class="inner">
 	<div class="contentRow-content">
+	<div class="ajaxContent">
+		<h3>Click buttons below </h3>
+		<p>(this will be an info-graphic)</p>
+	</div>
 	</div>
 
 <div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span></div>	
@@ -113,7 +117,7 @@ $shows[0]=['title'=>'Land of Many Gifts','abbr'=>'lomg','options'=>$lomg];
   
 $(document).ready(function(){
 
-	//preload all of the content
+	//preload all of the content, this would be for kiosk version. Web version make a function to load on demand
 	fetchBlogPosts();
 
 	updateAppearance(0);
@@ -304,7 +308,7 @@ $(document).ready(function(){
 				//$('.wp-content').html(data.content);
 				originalContent=data.content;
 				//$('.blog-loading').hide();
-				$('.contentRow-content').append('<div class="ajaxContent hidden <?=$title.'_'.$k?>">'+data.content+'</div>');
+				$('.contentRow-content').append('<div class="ajaxContent hidden <?=$title.'_'.$k?>"><h3>'+data.title+'</h3>'+data.content+'</div>');
 				
 			},
 			complete: function(){

@@ -71,6 +71,9 @@ body{
 	.subnav_active{
 		color: $burnt-orange;
 	}
+	h3{
+		font-size:2vw;
+	}
 }
 
 .contentRow{
@@ -93,7 +96,8 @@ body{
 	.contentRow_expandBtn{
 		.btn{
 			font-size: 4vw;
-			color: $burnt-orange;
+			color: white;
+			background-color: $burnt-orange;
 				&:hover, &:active{
 					color: $blue;
 				}
