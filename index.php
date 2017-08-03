@@ -20,6 +20,8 @@ foreach (glob('slideshow_imgs/*.JPG') as $key=>$filename) $image[$key]=$filename
 if (empty($image)) foreach (glob('slideshow_imgs/*.jpg') as $key=>$filename) $image[$key]=$filename;
 
 //some basic variables
+
+//learna
 $lmg=[];
 //$lomg['Spring']['subtitle']='introduction';
 $lmg['Spring']['planting']=['blogid'=>'40255'];
@@ -39,6 +41,7 @@ $lmg['Winter']['mobility']=['blogid'=>'40147'];
 $lmg['Winter']['toys_and_games']=['blogid'=>'40147'];
 $lmg['Winter']['earth_lodges']=['blogid'=>'39994'];
 
+//learnb
 $bp=[];
 $bp['Preparations']['the_buffalo_tradition']=['blogid'=>'40255'];
 $bp['Preparations']['buffalo_dances']=['blogid'=>'40255'];
@@ -53,12 +56,51 @@ $bp['Back_to_Camp']['using_everything']=['blogid'=>'40255'];
 $bp['Giving_Thanks']['symbolism']=['blogid'=>'40255'];
 $bp['Giving_Thanks']['the_buffalo_today']=['blogid'=>'40255'];
 
+//learnc
+$hc=[];
+$hc['Child']['hills_of_life']=['blogid'=>'40255'];
+$hc['Child']['naming']=['blogid'=>'40255'];
+$hc['Child']['first_powwow']=['blogid'=>'40255'];
+$hc['Child']['continuity']=['blogid'=>'40255'];
+$hc['Youth']['boys_and_girls_lodges']=['blogid'=>'40255'];
+$hc['Youth']['first_hunt']=['blogid'=>'40255'];
+$hc['Youth']['first_hide']=['blogid'=>'40255'];
+$hc['Youth']['graduation']=['blogid'=>'40255'];
+$hc['Adult']['buffalo_woman_society']=['blogid'=>'40255'];
+$hc['Adult']['mens_societies']=['blogid'=>'40255'];
+$hc['Adult']['warriors']=['blogid'=>'40255'];
+$hc['Adult']['leadership']=['blogid'=>'40255'];
+$hc['Elder']['sacred_knowledge']=['blogid'=>'40255'];
+$hc['Elder']['age_is_a_blessing']=['blogid'=>'40255'];
+$hc['Elder']['sun_dance']=['blogid'=>'40255'];
+$hc['Elder']['grandparents']=['blogid'=>'40255'];
+
+//learnd
+$tcm=[];
+$tcm['Community']['sovereignty']=['blogid'=>'40255'];
+$tcm['Community']['reservation_life']=['blogid'=>'40255'];
+$tcm['Community']['economic_issues']=['blogid'=>'40255'];
+$tcm['Community']['tribal_government']=['blogid'=>'40255'];
+$tcm['Land']['reservations']=['blogid'=>'40255'];
+$tcm['Land']['urbanization_and_relocation']=['blogid'=>'40255'];
+$tcm['Land']['water_rights']=['blogid'=>'40255'];
+$tcm['Land']['sacred_lands']=['blogid'=>'40255'];
+$tcm['Spirituality']['passing_on_traditions']=['blogid'=>'40255'];
+$tcm['Spirituality']['search_for_hope']=['blogid'=>'40255'];
+$tcm['Spirituality']['reclaiming_sacred_objects']=['blogid'=>'40255'];
+$tcm['Spirituality']['recovery']=['blogid'=>'40255'];
+$tcm['Identity']['tribal_identity']=['blogid'=>'40255'];
+$tcm['Identity']['language']=['blogid'=>'40255'];
+$tcm['Identity']['boarding_schools']=['blogid'=>'40255'];
+$tcm['Identity']['contemporary_education']=['blogid'=>'40255'];
+
+
 
 //set the show to anything here
 $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
 $show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
-//$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
-//$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
+$show=['title'=>'Honor and Celebration','abbr'=>'hc','options'=>$hc];
+$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','options'=>$tcm];
 
 ?>
 <html>
