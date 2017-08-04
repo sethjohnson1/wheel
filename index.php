@@ -10,6 +10,10 @@ music has sound files that play on repeat in background
 
 tcm is adversity and renewal, not sure what it stands for
 
+***************
+
+THIS IS THE STANDALONE KIOSK VERSION. The Live version should pull blog posts on demand. This should be used for each of the four kiosk versions to "compile" the site and then run locally *may need find/replace centerofthewest.org/ or..hmm how to handle that. !! Get the images and name/sort them for use here and then upload
+
 
 */
 
