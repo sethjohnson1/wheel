@@ -8,6 +8,7 @@ body{
 	margin: 0 auto;
 	width:60%;
 	position: relative;
+	top:-20px;
 	@include rotate(0deg);
 	
 	.quad_active{
