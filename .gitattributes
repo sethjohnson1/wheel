@@ -40,3 +40,4 @@
 *.woff    -text diff
 *.ttf	  -text diff
 *.psd	  -text diff
+*.mp3	  -text diff
