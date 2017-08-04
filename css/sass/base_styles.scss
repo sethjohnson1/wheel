@@ -116,17 +116,20 @@ body{
 .subNavContent{
 	//min-height:17%;
 	.icon_button{
-		border-bottom: 2px solid black;
+		//no border for now, line spacing annoying
+		//border-bottom: 2px solid black;
+		border-bottom: 2px solid transparent;
 	}
 	.subnav_active{
 		color: $burnt-orange;
+		border-bottom: 2px solid $burnt-orange;
 		
 	}
-	h3{
+/*	h3{
 		font-size:3vw;
 	}
 	
-	
+*/	
 	
 	
     margin-bottom: 8%;
@@ -137,10 +140,13 @@ body{
 .subNavIcon{
 
 	h3{
+		font-size:4vw;
 		margin-top:-25%;
 		font-family: $amatic;
-		font-weight:700;
+		font-weight:900;
 		margin-left:5%;
+		//this sucks on smaller screen, deal with later
+		//min-height:162%;
 	}
 	
 	img{
