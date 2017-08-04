@@ -102,9 +102,9 @@ $tcm['Identity']['contemporary_education']=['blogid'=>'40255'];
 
 //set the show to anything here
 $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
-$show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
-$show=['title'=>'Honor and Celebration','abbr'=>'hc','options'=>$hc];
-$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','options'=>$tcm];
+//$show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
+//$show=['title'=>'Honor and Celebration','abbr'=>'hc','options'=>$hc];
+//$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','options'=>$tcm];
 
 ?>
 <html>
