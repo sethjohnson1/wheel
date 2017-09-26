@@ -126,9 +126,30 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 
 <div class="container-fluid">
 
+<div class="row contentRow">
+<div class="col-xs-12">
+<div class="inner">
+	<div class="contentRow-content">
+	<div class="ajaxContent">
+		<h3>Loading...</h3>
+	</div>
+	</div>
+
+<div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span></div>	
+</div>
+</div>
+</div><!-- content row -->
+
+<div class="row subNavContent">
+<div class="col-xs-12">
+
+</div>
+</div><!-- subNavContent icons row -->
+
+
   <div class="row wheelRow">
   <div class="col-xs-12">
-   <div id="wheel-NO-MORE">
+   <div id="wheel">
    <?php $cnt=0;
    foreach ($show['options'] as $title=>$v):
 	if ($cnt==0) $angle_val=0;	
@@ -154,18 +175,12 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
    </div>
    <?php endforeach ?>
    </div><!-- /nav group -->
-   <!-- div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button quad_label quad_label_<?=$cnt?>">
-   <h2><?=str_replace("_"," ",$title)?></h2>
-   </div -->
-   
-	<div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button">
-   <h2><?=str_replace("_"," ",$title)?></h2>
-   </div>
+   <div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button quad_label quad_label_<?=$cnt?>"><h2><?=str_replace("_"," ",$title)?></h2></div>
 
    <?php 
    $cnt++;
    endforeach; ?>
-   <!-- img class="img-responsive" src="img/wheel_large_shadow.png" alt="wheel" id="wheel_img"/ -->
+   <img class="img-responsive" src="img/wheel_large_shadow.png" alt="wheel" id="wheel_img"/>
    </div>
    <!-- old testing buttons
    <button class="nav_button" value="0">Spring</button>
@@ -176,31 +191,6 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 
   </div>
   </div><!-- /wheel row -->
-
-<div class="row subNavContent">
-<div class="col-xs-12">
-
-</div>
-</div><!-- subNavContent icons row -->
-
-<div class="row contentRow">
-<div class="col-xs-12">
-<div class="inner">
-	<div class="contentRow-content">
-	<div class="ajaxContent">
-		<h3>Loading...</h3>
-	</div>
-	</div>
-
-<div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span></div>	
-</div>
-</div>
-</div><!-- content row -->
-
-
-
-
-
   
   <div class="toolbar">
   <span class="glyphicon glyphicon-minus-sign changeFontSize"></span>
@@ -456,7 +446,7 @@ $(document).ready(function(){
 	
 	function fetchIntroPost(){
 		
-		/*$.ajax({
+		$.ajax({
 			async:true,
 			dataType:"jsonp",
 			success:function (data, textStatus) {
@@ -474,12 +464,10 @@ $(document).ready(function(){
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
 		});
-		*/
 		
 	}
-/* **** DISABLED THESE FOR DESIGNING AS THEY SLOW DOWN LOAD  */
+		
 	function fetchBlogPosts(){
-	/*
 		<?php foreach ($show['options'] as $title=>$v): ?>
 		<?php foreach ($v as $k=>$sub): ?>
 		//$(document).ready(function() { 
@@ -506,7 +494,6 @@ $(document).ready(function(){
 	
 		<?php endforeach ?>
 		<?php endforeach ?>
-		*/
 	}
 	
   </script>
