@@ -28,22 +28,23 @@ if (empty($image)) foreach (glob('slideshow_imgs/*.jpg') as $key=>$filename) $im
 //learna
 $lmg=[];
 //$lomg['Spring']['subtitle']='introduction';
-$lmg['Spring']['planting']=['blogid'=>'40255'];
-$lmg['Spring']['gathering_willows']=['blogid'=>'40181'];
-$lmg['Spring']['tobacco_ceremony']=['blogid'=>'39994'];
-$lmg['Spring']['hunting']=['blogid'=>'40221'];
-$lmg['Summer']['gardening']=['blogid'=>'38396'];
-$lmg['Summer']['hunting']=['blogid'=>'40147'];
-$lmg['Summer']['gathering']=['blogid'=>'40147'];
-$lmg['Summer']['celebrations']=['blogid'=>'40147'];
-$lmg['Fall']['hunting']=['blogid'=>'40147'];
-$lmg['Fall']['gathering']=['blogid'=>'40147'];
-$lmg['Fall']['harvesting']=['blogid'=>'40147'];
-$lmg['Fall']['trade']=['blogid'=>'40147'];
-$lmg['Winter']['tipis']=['blogid'=>'40147'];
-$lmg['Winter']['mobility']=['blogid'=>'40147'];
-$lmg['Winter']['toys_and_games']=['blogid'=>'40147'];
-$lmg['Winter']['earth_lodges']=['blogid'=>'39994'];
+
+$lmg['Spring']['planting']=['blogid'=>'40571'];
+$lmg['Spring']['gathering_willows']=['blogid'=>'40572'];
+$lmg['Spring']['tobacco_ceremony']=['blogid'=>'40577'];
+$lmg['Spring']['hunting']=['blogid'=>'40579'];
+$lmg['Summer']['gardening']=['blogid'=>'40585'];
+$lmg['Summer']['hunting']=['blogid'=>'40586'];
+$lmg['Summer']['gathering']=['blogid'=>'40616'];
+$lmg['Summer']['celebrations']=['blogid'=>'40625'];
+$lmg['Fall']['hunting']=['blogid'=>'40924'];
+$lmg['Fall']['gathering']=['blogid'=>'40926'];
+$lmg['Fall']['harvesting']=['blogid'=>'40929'];
+$lmg['Fall']['trade']=['blogid'=>'40934'];
+$lmg['Winter']['tipis']=['blogid'=>'40960'];
+$lmg['Winter']['mobility']=['blogid'=>'40987'];
+$lmg['Winter']['toys_and_games']=['blogid'=>'40990'];
+$lmg['Winter']['earth_lodges']=['blogid'=>'40993'];
 
 //learnb
 $bp=[];
@@ -99,9 +100,8 @@ $tcm['Identity']['boarding_schools']=['blogid'=>'40255'];
 $tcm['Identity']['contemporary_education']=['blogid'=>'40255'];
 
 
-
 //set the show to anything here
-$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
+$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>$lmg];
 //$show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
 //$show=['title'=>'Honor and Celebration','abbr'=>'hc','options'=>$hc];
 //$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','options'=>$tcm];
@@ -131,8 +131,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','options'=>$lmg];
 <div class="inner">
 	<div class="contentRow-content">
 	<div class="ajaxContent">
-		<h3>Click buttons below </h3>
-		<p>(this will be an info-graphic)</p>
+		<h3>Loading...</h3>
 	</div>
 	</div>
 
@@ -232,6 +231,7 @@ $(document).ready(function(){
 	
 	
 	//preload all of the content, this would be for kiosk version. Web version make a function to load on demand
+	fetchIntroPost();
 	fetchBlogPosts();
 
 	updateAppearance(0);
@@ -444,6 +444,29 @@ $(document).ready(function(){
 		$('.subNavContent').html(items);
 	}
 	
+	function fetchIntroPost(){
+		
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').html('<div class="ajaxContent"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+			},
+			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
+		});
+		
+	}
+		
 	function fetchBlogPosts(){
 		<?php foreach ($show['options'] as $title=>$v): ?>
 		<?php foreach ($v as $k=>$sub): ?>
