@@ -29,18 +29,22 @@ if (empty($image)) foreach (glob('slideshow_imgs/*.jpg') as $key=>$filename) $im
 $lmg=[];
 //$lomg['Spring']['subtitle']='introduction';
 
+$lmg['Spring']['introduction']=['blogid'=>'40569'];
 $lmg['Spring']['planting']=['blogid'=>'40571'];
 $lmg['Spring']['gathering_willows']=['blogid'=>'40572'];
 $lmg['Spring']['tobacco_ceremony']=['blogid'=>'40577'];
 $lmg['Spring']['hunting']=['blogid'=>'40579'];
+$lmg['Summer']['introduction']=['blogid'=>'40584'];
 $lmg['Summer']['gardening']=['blogid'=>'40585'];
 $lmg['Summer']['hunting']=['blogid'=>'40586'];
 $lmg['Summer']['gathering']=['blogid'=>'40616'];
 $lmg['Summer']['celebrations']=['blogid'=>'40625'];
+$lmg['Fall']['introduction']=['blogid'=>'40917'];
 $lmg['Fall']['hunting']=['blogid'=>'40924'];
 $lmg['Fall']['gathering']=['blogid'=>'40926'];
 $lmg['Fall']['harvesting']=['blogid'=>'40929'];
 $lmg['Fall']['trade']=['blogid'=>'40934'];
+$lmg['Winter']['introduction']=['blogid'=>'40945'];
 $lmg['Winter']['tipis']=['blogid'=>'40960'];
 $lmg['Winter']['mobility']=['blogid'=>'40987'];
 $lmg['Winter']['toys_and_games']=['blogid'=>'40990'];
@@ -117,6 +121,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" src="js/jquery-rotate.js"></script>
 <script type="text/javascript" src="js/jquery.touchy.js"></script>
+<script type="text/javascript" src="js/jquery.colorbox.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- script type="text/javascript" src="js/wheel.js"></script -->
 
@@ -125,24 +130,35 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 <body>
 
 <div class="container-fluid">
-
+	
+	<div class="row titleRow">
+	<div class="col-xs-4">
+	<div id="wheel">
+	<img id="wheel_img" src="img/wheel1.png" alt="image of circular object" />
+	</div>
+	</div>
+	<div class="col-xs-8">
+	<h1><?=$show['title']?></h1>
+	</div>
+	</div>
   <div class="row wheelRow">
   <div class="col-xs-12">
-   <div id="wheel-NO-MORE">
+   <div id="wheel-NO-MORE" class="row">
    <?php $cnt=0;
    foreach ($show['options'] as $title=>$v):
-	if ($cnt==0) $angle_val=0;	
+	if ($cnt==0) $angle_val="0";	
 	if ($cnt==1) $angle_val="-90";
 	if ($cnt==2) $angle_val="-180";
-	if ($cnt==3) $angle_val="90";
+	if ($cnt==3) $angle_val="-270";
 	
 	//now make columns that can be jQuery'd into above nav rows?>
 	<div class="Content<?=$cnt?>-navs hidden">
 	<?php
 	foreach ($v as $k=>$sub):
+		if ($k=='introduction') continue;
    ?>
 
-   <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
+   <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-2">
    <!-- img src="img/icons/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" / -->
    
    <div class="subNavIcon nav-item">
@@ -158,9 +174,9 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
    <h2><?=str_replace("_"," ",$title)?></h2>
    </div -->
    
-	<div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button">
-   <h2><?=str_replace("_"," ",$title)?></h2>
-   </div>
+	<div data-toggle="<?=$title?>_introduction" class="col-xs-3 quad_label quad_label_<?=$cnt?> nav-item nav_button" onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" >
+		<h2><?=str_replace("_"," ",$title)?></h2>
+	</div>
 
    <?php 
    $cnt++;
@@ -192,7 +208,8 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 	</div>
 	</div>
 
-<div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span></div>	
+<!-- div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span>
+</div -->	
 </div>
 </div>
 </div><!-- content row -->
@@ -242,21 +259,35 @@ $(document).ready(function(){
 	
 	//preload all of the content, this would be for kiosk version. Web version make a function to load on demand
 	fetchIntroPost();
+	//disabled for designing as it slows down load!
 	fetchBlogPosts();
-
-	updateAppearance(0);
+	
+	//updateAppearance(0);
+	
+	wheelSpun=false;
 	$(".nav_button").click(function() {
+		//first load the introductory blog post
+		$('.ajaxContent').hide();
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
 		//stops the animation and animates to value of button
 		//clearInterval(interval);
+		$('#wheel').stop();
 		getAngle();
 		if (playAudio) wheelAudio.play();
+		//makes the spinning slightly more interesting and sequential
+		currentAngle=parseInt($(this).attr("value"));
+		if (wheelSpun){
+			if (currentAngle==0) currentAngle="-360";
+		}
 		$("#wheel").rotate({
 			angle:"-90",
-			animateTo: parseInt($(this).attr("value")),
+			animateTo: parseInt(currentAngle),
 			duration:3000,
 			easing: $.easing.easeInOutSine,
 			easing: $.easing.easeInOutCubic,
 			callback: function(){ 
+				wheelSpun=true;
 				getAngle();
 				if (playAudio){
 					wheelAudio.pause();
@@ -269,7 +300,7 @@ $(document).ready(function(){
 		//angle=parseInt($(this).attr("value"));
 		//
 		
-		collapseNav();
+		//collapseNav();
 		
 	});
 	/*
@@ -314,6 +345,7 @@ $(document).ready(function(){
 		if (playAudio) dropletAudio.play();
 		
 	});
+	
 	$(".contentRow_expandBtn").click(function() {
 		if (playAudio) fluteAudio.play();
 		//console.log($(this).hasClass('expanded'));
@@ -363,7 +395,7 @@ $(document).ready(function(){
 			spin(velocity);
 	}
 	//console.log(data);
-	getAngle();
+	getAngle(true);
 	};
 
 	var spin = function (velocity) {
@@ -383,14 +415,17 @@ $(document).ready(function(){
 	};
 
 	var rotate = function (degrees) {
-	$target.css('webkitTransform','rotate3d(0,0,1,'+ degrees +'deg)');
+		$target.css('webkitTransform','rotate3d(0,0,1,'+ degrees +'deg)');
+		getAngle(true);
 	//console.log(degrees);
 	};
 
 	$('#wheel_img').bind('touchy-rotate', handleTouchyRotate);
 });
 			
-	function getAngle(){
+	function getAngle(doUpdates){
+		//console.log(doUpdates);
+		if (!doUpdates) doUpdates=false;
 		var el = document.getElementById("wheel");
 		var st = window.getComputedStyle(el, null);
 		var tr = st.getPropertyValue("-webkit-transform") ||
@@ -424,23 +459,26 @@ $(document).ready(function(){
 
 		//console.log('Rotate: ' + angle + 'deg');
 		
-		if (angle<=45 && angle>-45) {
-			//console.log('spring');
-			updateAppearance(0);
-		}
-		if (angle<=-45) {
-			//console.log('summer');
-			updateAppearance(1);
-		}
-		
-		if (angle<-137 || angle>=145){
-			//console.log('Fall');
-			updateAppearance(2);
-		}
-		
-		if (angle<145 && angle>45){
-			//console.log('winter');
-			updateAppearance(3);
+		//added IF statement here so it only updates when we want it to
+		if (doUpdates){
+			if (angle<=45 && angle>-45) {
+				//console.log('spring');
+				updateAppearance(0);
+			}
+			if (angle<=-45) {
+				//console.log('summer');
+				updateAppearance(1);
+			}
+			
+			if (angle<-137 || angle>=145){
+				//console.log('Fall');
+				updateAppearance(2);
+			}
+			
+			if (angle<145 && angle>45){
+				//console.log('winter');
+				updateAppearance(3);
+			}
 		}
 		
 		
@@ -454,9 +492,10 @@ $(document).ready(function(){
 		$('.subNavContent').html(items);
 	}
 	
+	
 	function fetchIntroPost(){
 		
-		/*$.ajax({
+		$.ajax({
 			async:true,
 			dataType:"jsonp",
 			success:function (data, textStatus) {
@@ -471,15 +510,20 @@ $(document).ready(function(){
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
+				//find by data-rel lightbox from Wordpress and add ColorBox
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>');
+				initColorBox('<?=$show['blogid']?>');
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
 		});
-		*/
+		
 		
 	}
-/* **** DISABLED THESE FOR DESIGNING AS THEY SLOW DOWN LOAD  */
+/*
+	this is what the kiosk should use to preload everything
+ */
 	function fetchBlogPosts(){
-	/*
+
 		<?php foreach ($show['options'] as $title=>$v): ?>
 		<?php foreach ($v as $k=>$sub): ?>
 		//$(document).ready(function() { 
@@ -498,6 +542,9 @@ $(document).ready(function(){
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>');
+				initColorBox('<?=$show['blogid']?>');
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$sub['blogid']?>/?_jsonp=?"
 		});
@@ -506,8 +553,21 @@ $(document).ready(function(){
 	
 		<?php endforeach ?>
 		<?php endforeach ?>
-		*/
+	
 	}
+	
+	function initColorBox(blogid){
+		//colorbox stuff
+		cbw="100%";
+		cbh="75%";
+		//override if screen wider than tall
+		if ($( window ).width()>=$( window ).height()){
+			cbw="80%";
+			cbh="90%";
+		}
+		var $gallery=$(".ajaxPic_"+blogid).colorbox({rel:'ajaxPic',width:cbw,height:cbh,opacity:0.75,current:"Viewing picture {current} of {total}"});
+	}
+	
 	
   </script>
 
