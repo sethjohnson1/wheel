@@ -158,7 +158,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 		if ($k=='introduction') continue;
    ?>
 
-   <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-2">
+   <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
    <!-- img src="img/icons/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" / -->
    
    <div class="subNavIcon nav-item">
