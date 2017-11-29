@@ -545,6 +545,11 @@ $(document).ready(function(){
 				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
 				$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>');
 				initColorBox('<?=$show['blogid']?>');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$sub['blogid']?>/?_jsonp=?"
 		});
