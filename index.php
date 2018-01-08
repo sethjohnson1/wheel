@@ -12,7 +12,9 @@ tcm is adversity and renewal, not sure what it stands for
 
 ***************
 
-THIS IS THE STANDALONE KIOSK VERSION. The Live version should pull blog posts on demand. This should be used for each of the four kiosk versions to "compile" the site and then run locally *may need find/replace centerofthewest.org/ or..hmm how to handle that. !! Get the images and name/sort them for use here and then upload
+THIS IS THE STANDALONE KIOSK VERSION. The Live version should pull blog posts on demand. This should be used for each of the four kiosk versions to "compile" the site and then run locally. Using Chrome download entire website seems to work, then add the assets to the same directory as the HTML file, and remove the Javascript that fetches blog posts and also the Intro post
+
+
 
 
 */
@@ -104,8 +106,8 @@ $tcm['Identity']['boarding_schools']=['blogid'=>'40255'];
 $tcm['Identity']['contemporary_education']=['blogid'=>'40255'];
 
 
-//set the show to anything here
-$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>$lmg];
+//set the show to anything here, use the first theme as the intro blogid (i.e. Spring intro)
+$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>$lmg];
 //$show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
 //$show=['title'=>'Honor and Celebration','abbr'=>'hc','options'=>$hc];
 //$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','options'=>$tcm];
@@ -134,7 +136,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 	<div class="row titleRow">
 	<div class="col-xs-4">
 	<div id="wheel">
-	<img id="wheel_img" src="img/wheel1.png" alt="image of circular object" />
+	<img id="wheel_img" src="img/wheel_<?=$show['abbr']?>.png" alt="<?=$show['title']?>" />
 	</div>
 	</div>
 	<div class="col-xs-8">
@@ -218,14 +220,18 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
 
 
 
+<div class="toolbar-container">  
+  
+  <img src="img/bbcw-logo.svg" class="" style="width:9%; margin-left:20px" />
+  <img src="img/pim.svg" class="" style="width:26%; margin-left:20px" />
   
   <div class="toolbar">
-  <span class="glyphicon glyphicon-minus-sign changeFontSize"></span>
-  <span class="glyphicon glyphicon-plus-sign changeFontSize"></span>
-  <span class="glyphicon glyphicon-volume-up toggleVolume"></span>
-  
+	  <span class="glyphicon glyphicon-minus-sign changeFontSize"></span>
+	  <span class="glyphicon glyphicon-plus-sign changeFontSize"></span>
+	  <span class="glyphicon glyphicon-volume-up toggleVolume"></span>
+	  
   </div>
-  
+</div>  
   </div><!-- /container -->
 	<style>
 	/* this will prevent scrolling when the element is rotated, it also alleviates the Chrome console issue about element being treated as passive  */
@@ -236,6 +242,13 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40546','options'=>
   <script>
   
 $(document).ready(function(){
+	//disable links
+	$(document).off('click', 'a').on('click', 'a',function(e) {
+		//don't just show the modal, it's empty until link is clicked
+		e.preventDefault();
+		return false;
+	});
+	
 	//preload audio
 	
 	var playAudio=true;
@@ -262,7 +275,7 @@ $(document).ready(function(){
 	//disabled for designing as it slows down load!
 	fetchBlogPosts();
 	
-	//updateAppearance(0);
+	updateAppearance(0);
 	
 	wheelSpun=false;
 	$(".nav_button").click(function() {
@@ -505,14 +518,16 @@ $(document).ready(function(){
 				//$('.wp-content').html(data.content);
 				originalContent=data.content;
 				//$('.blog-loading').hide();
-				$('.contentRow-content').html('<div class="ajaxContent"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				$('.contentRow-content').html('<div class="ajaxContent"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
 				
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
 				//find by data-rel lightbox from Wordpress and add ColorBox
-				$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>');
-				initColorBox('<?=$show['blogid']?>');
+				//don't do this for Intro now, because its used elsewhere and this makes it duplicate
+				//but we don't need colorBox!
+				//$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>_intro');
+				//initColorBox('<?=$show['blogid']?>_intro');
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
 		});
@@ -526,7 +541,6 @@ $(document).ready(function(){
 
 		<?php foreach ($show['options'] as $title=>$v): ?>
 		<?php foreach ($v as $k=>$sub): ?>
-		//$(document).ready(function() { 
 		$.ajax({
 			async:true,
 			dataType:"jsonp",
@@ -537,24 +551,28 @@ $(document).ready(function(){
 				//$('.wp-content').html(data.content);
 				originalContent=data.content;
 				//$('.blog-loading').hide();
-				$('.contentRow-content').append('<div class="ajaxContent hidden <?=$title.'_'.$k?>"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				$('.contentRow-content').append('<div class="ajaxContent hidden <?=$title.'_'.$k?>"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
 				
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
-				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
-				$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>');
-				initColorBox('<?=$show['blogid']?>');
+				//actually, no need for colorBox!
+				//$('.<?=$title.'_'.$k?>').find('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$sub['blogid']?>');
+				//initColorBox('<?=$sub['blogid']?>');
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				console.log(xhr.status);
+				console.log(thrownError);
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$sub['blogid']?>/?_jsonp=?"
 		});
-		//return false;
-		//});
+
 	
 		<?php endforeach ?>
 		<?php endforeach ?>
 	
 	}
+
 	
 	function initColorBox(blogid){
 		//colorbox stuff
@@ -565,7 +583,7 @@ $(document).ready(function(){
 			cbw="80%";
 			cbh="90%";
 		}
-		var $gallery=$(".ajaxPic_"+blogid).colorbox({rel:'ajaxPic',width:cbw,height:cbh,opacity:0.75,current:"Viewing picture {current} of {total}"});
+		var $gallery=$(".ajaxPic_"+blogid).colorbox({rel:'ajaxPic_'+blogid,width:cbw,height:cbh,opacity:0.75,current:"Viewing picture {current} of {total}"});
 	}
 	
 	

@@ -266,7 +266,8 @@ a img.aligncenter {
 }
 
 .wp-caption {
-    background: #fff;
+    background: rgba(255,255,255,.5);
+	box-shadow: 4px 4px 14px grey;
     border: 1px solid #f0f0f0;
     max-width: 96%; /* Image does not overflow the content area */
     padding: 5px 3px 10px;
