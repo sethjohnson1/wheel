@@ -123,10 +123,10 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" src="js/jquery-rotate.js"></script>
 <script type="text/javascript" src="js/jquery.touchy.js"></script>
-<script type="text/javascript" src="js/jquery.colorbox.js"></script>
+<!-- script type="text/javascript" src="js/jquery.colorbox.js"></script -->
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- script type="text/javascript" src="js/wheel.js"></script -->
-
+<title><?=$show['title']?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -156,11 +156,16 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
 	//now make columns that can be jQuery'd into above nav rows?>
 	<div class="Content<?=$cnt?>-navs hidden">
 	<?php
+	$intro_id='';
 	foreach ($v as $k=>$sub):
-		if ($k=='introduction') continue;
+		if ($k=='introduction'){
+			$intro_id=$sub['blogid'];
+			continue;
+			
+		}
    ?>
 
-   <div data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
+   <div data-id="<?=$sub['blogid']?>" data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
    <!-- img src="img/icons/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" / -->
    
    <div class="subNavIcon nav-item">
@@ -176,7 +181,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
    <h2><?=str_replace("_"," ",$title)?></h2>
    </div -->
    
-	<div data-toggle="<?=$title?>_introduction" class="col-xs-3 quad_label quad_label_<?=$cnt?> nav-item nav_button" onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" >
+	<div data-id="<?=$intro_id?>" data-toggle="<?=$title?>_introduction" class="col-xs-3 quad_label quad_label_<?=$cnt?> nav-item nav_button" onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" >
 		<h2><?=str_replace("_"," ",$title)?></h2>
 	</div>
 
@@ -270,19 +275,21 @@ $(document).ready(function(){
     }, false);
 	
 	
-	//preload all of the content, this would be for kiosk version. Web version make a function to load on demand
-	fetchIntroPost();
-	//disabled for designing as it slows down load!
-	fetchBlogPosts();
+	//use this conditional statement so I don't have to keep editing the generated HTML file
+	/*if (document.location.href=='https://sv-php7/wheel/'){
+		//preload all of the content for the kiosk
+		fetchIntroPost();
+		//disable for designing as it slows down load!
+		fetchBlogPosts();
+	}
+	*/
 	
 	updateAppearance(0);
 	
 	wheelSpun=false;
 	$(".nav_button").click(function() {
-		//first load the introductory blog post
 		$('.ajaxContent').hide();
-		$('.'+$(this).attr('data-toggle')).fadeIn();
-		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		fetchBlogPost($(this).attr('data-toggle'),$(this).attr('data-id'));
 		//stops the animation and animates to value of button
 		//clearInterval(interval);
 		$('#wheel').stop();
@@ -347,11 +354,10 @@ $(document).ready(function(){
 	});
 	
 	$(document).off('click', '.icon_button').on('click', '.icon_button',function(e) {
-		//
-	//	console.log($(this).attr('data-toggle'));
 		$('.ajaxContent').hide();
-		$('.'+$(this).attr('data-toggle')).fadeIn();
-		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		fetchBlogPost($(this).attr('data-toggle'),$(this).attr('data-id'));
+		//$('.'+$(this).attr('data-toggle')).fadeIn();
+		//$('.'+$(this).attr('data-toggle')).removeClass('hidden');
 		$('.icon_button').removeClass('subnav_active');
 		$(this).addClass('subnav_active');
 		
@@ -505,37 +511,45 @@ $(document).ready(function(){
 		$('.subNavContent').html(items);
 	}
 	
-	
-	function fetchIntroPost(){
-		
-		$.ajax({
-			async:true,
-			dataType:"jsonp",
-			success:function (data, textStatus) {
-				//console.log(data);
-				$('.wp-title').text(data.title);
-				//$('.wp-author').text('By '+data.author.name);
-				//$('.wp-content').html(data.content);
-				originalContent=data.content;
-				//$('.blog-loading').hide();
-				$('.contentRow-content').html('<div class="ajaxContent"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
-				
-			},
-			complete: function(){
-				$('.video-container').addClass('youtube-container');
-				//find by data-rel lightbox from Wordpress and add ColorBox
-				//don't do this for Intro now, because its used elsewhere and this makes it duplicate
-				//but we don't need colorBox!
-				//$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>_intro');
-				//initColorBox('<?=$show['blogid']?>_intro');
-			},
-			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
-		});
-		
-		
+	/*  **** UPDATE THIS NOT TO DUPLICATE  */
+	function fetchBlogPost(classname,blogid){
+		if (document.location.href=='https://sv-php7/wheel/'){	
+			$.ajax({
+				async:true,
+				dataType:"jsonp",
+				success:function (data, textStatus) {
+					//console.log(data);
+					$('.wp-title').text(data.title);
+					//$('.wp-author').text('By '+data.author.name);
+					//$('.wp-content').html(data.content);
+					originalContent=data.content;
+					//$('.blog-loading').hide();
+					$('.contentRow-content').append('<div class="ajaxContent hidden '+classname+'"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
+					
+				},
+				complete: function(){
+					$('.video-container').addClass('youtube-container');	
+					$("img").removeAttr('srcset');
+					$("img").removeAttr('sizes');
+					$('.'+classname).fadeIn();
+					$('.'+classname).removeClass('hidden');
+					
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					console.log(xhr.status);
+					console.log(thrownError);
+				},
+				url:"https://centerofthewest.org/wp-json/posts/"+blogid+"/?_jsonp=?"
+			});
+		}
+		$('.'+classname).fadeIn();
+		$('.'+classname).removeClass('hidden');
 	}
+	
 /*
 	this is what the kiosk should use to preload everything
+	yeah but the piece of shit API sometimes doesn't work, so this is not a good idea.
+	Probably better to just load by clicking on everything
  */
 	function fetchBlogPosts(){
 
@@ -556,6 +570,10 @@ $(document).ready(function(){
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
+				
+				$("img").removeAttr('srcset');
+				$("img").removeAttr('sizes');
+				
 				//actually, no need for colorBox!
 				//$('.<?=$title.'_'.$k?>').find('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$sub['blogid']?>');
 				//initColorBox('<?=$sub['blogid']?>');

@@ -6,6 +6,7 @@
 @include include-custom-font( TheSerif_4_, serif );
 @include include-custom-font( TheSerif_6_, serif );
 
+
 $base-size: 16;
 
 $sans-serif:        "TheSans_B2_3_", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -39,10 +40,37 @@ strong {
 }
 
 //fonts for PIM app
+//download the Google fonts locally using this tool:
+//https://google-webfonts-helper.herokuapp.com
+/* amatic-sc-regular - latin */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/amatic-sc-v11-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Amatic SC Regular'), local('AmaticSC-Regular'),
+       url('../fonts/amatic-sc-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/amatic-sc-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/amatic-sc-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/amatic-sc-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/amatic-sc-v11-latin-regular.svg#AmaticSC') format('svg'); /* Legacy iOS */
+}
 
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Satisfy|Holtwood+One+SC|Mate+SC');
+/* mate-sc-regular - latin */
+@font-face {
+  font-family: 'Mate SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/mate-sc-v6-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Mate SC Regular'), local('MateSC-Regular'),
+       url('../fonts/mate-sc-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/mate-sc-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/mate-sc-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/mate-sc-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/mate-sc-v6-latin-regular.svg#MateSC') format('svg'); /* Legacy iOS */
+}
 
-$cursive: 'Satisfy', cursive;
+//$cursive: 'Satisfy', cursive;
 $amatic: 'Amatic SC', cursive;
-$holtwood: 'Holtwood One SC', serif;
+//$holtwood: 'Holtwood One SC', serif;
 $mate: 'Mate SC', serif;
