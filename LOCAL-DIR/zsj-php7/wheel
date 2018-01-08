@@ -1,0 +1,1212 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://zsj-php7/wheel/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://zsj-php7/wheel/css/wheel.min.css" />
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery.slides.min.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery-easing.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery-rotate.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery.touchy.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="https://zsj-php7/wheel/js/bootstrap.min.js"></script>
+<!-- script type="text/javascript" src="js/wheel.js"></script -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container-fluid">
+	
+	<div class="row titleRow">
+	<div class="col-xs-4">
+	<div id="wheel">
+	<img id="wheel_img" src="https://zsj-php7/wheel/img/wheel1.png" alt="image of circular object" />
+	</div>
+	</div>
+	<div class="col-xs-8">
+	<h1>Land of Many Gifts</h1>
+	</div>
+	</div>
+  <div class="row wheelRow">
+  <div class="col-xs-12">
+   <div id="wheel-NO-MORE" class="row">
+   	<div class="Content0-navs hidden">
+	
+   <div data-toggle="Spring_planting" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_planting.png" alt="planting" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_planting.png" alt="planting" class="img-responsive subNavIcon" />
+   <h3>planting</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Spring_gathering_willows" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_gathering_willows.png" alt="gathering willows" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_gathering_willows.png" alt="gathering willows" class="img-responsive subNavIcon" />
+   <h3>gathering willows</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Spring_tobacco_ceremony" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_tobacco_ceremony.png" alt="tobacco ceremony" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_tobacco_ceremony.png" alt="tobacco ceremony" class="img-responsive subNavIcon" />
+   <h3>tobacco ceremony</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Spring_hunting" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_hunting.png" alt="hunting" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_hunting.png" alt="hunting" class="img-responsive subNavIcon" />
+   <h3>hunting</h3>
+   </div>
+   
+   
+   </div>
+      </div><!-- /nav group -->
+   <!-- div onclick="updateAppearance(0);" value="0" class="nav-item nav_button quad_label quad_label_0">
+   <h2>Spring</h2>
+   </div -->
+   
+	<div data-toggle="Spring_introduction" class="col-xs-3 quad_label quad_label_0 nav-item nav_button" onclick="updateAppearance(0);" value="0" >
+		<h2>Spring</h2>
+	</div>
+
+   	<div class="Content1-navs hidden">
+	
+   <div data-toggle="Summer_gardening" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_gardening.png" alt="gardening" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_gardening.png" alt="gardening" class="img-responsive subNavIcon" />
+   <h3>gardening</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Summer_hunting" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_hunting.png" alt="hunting" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_hunting.png" alt="hunting" class="img-responsive subNavIcon" />
+   <h3>hunting</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Summer_gathering" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_gathering.png" alt="gathering" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_gathering.png" alt="gathering" class="img-responsive subNavIcon" />
+   <h3>gathering</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Summer_celebrations" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_celebrations.png" alt="celebrations" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_celebrations.png" alt="celebrations" class="img-responsive subNavIcon" />
+   <h3>celebrations</h3>
+   </div>
+   
+   
+   </div>
+      </div><!-- /nav group -->
+   <!-- div onclick="updateAppearance(1);" value="-90" class="nav-item nav_button quad_label quad_label_1">
+   <h2>Summer</h2>
+   </div -->
+   
+	<div data-toggle="Summer_introduction" class="col-xs-3 quad_label quad_label_1 nav-item nav_button" onclick="updateAppearance(1);" value="-90" >
+		<h2>Summer</h2>
+	</div>
+
+   	<div class="Content2-navs hidden">
+	
+   <div data-toggle="Fall_hunting" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_hunting.png" alt="hunting" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_hunting.png" alt="hunting" class="img-responsive subNavIcon" />
+   <h3>hunting</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Fall_gathering" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_gathering.png" alt="gathering" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_gathering.png" alt="gathering" class="img-responsive subNavIcon" />
+   <h3>gathering</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Fall_harvesting" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_harvesting.png" alt="harvesting" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_harvesting.png" alt="harvesting" class="img-responsive subNavIcon" />
+   <h3>harvesting</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Fall_trade" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_trade.png" alt="trade" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_trade.png" alt="trade" class="img-responsive subNavIcon" />
+   <h3>trade</h3>
+   </div>
+   
+   
+   </div>
+      </div><!-- /nav group -->
+   <!-- div onclick="updateAppearance(2);" value="-180" class="nav-item nav_button quad_label quad_label_2">
+   <h2>Fall</h2>
+   </div -->
+   
+	<div data-toggle="Fall_introduction" class="col-xs-3 quad_label quad_label_2 nav-item nav_button" onclick="updateAppearance(2);" value="-180" >
+		<h2>Fall</h2>
+	</div>
+
+   	<div class="Content3-navs hidden">
+	
+   <div data-toggle="Winter_tipis" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_tipis.png" alt="tipis" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_tipis.png" alt="tipis" class="img-responsive subNavIcon" />
+   <h3>tipis</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Winter_mobility" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_mobility.png" alt="mobility" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_mobility.png" alt="mobility" class="img-responsive subNavIcon" />
+   <h3>mobility</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Winter_toys_and_games" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_toys_and_games.png" alt="toys and games" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_toys_and_games.png" alt="toys and games" class="img-responsive subNavIcon" />
+   <h3>toys and games</h3>
+   </div>
+   
+   
+   </div>
+   
+   <div data-toggle="Winter_earth_lodges" class="nav-item icon_button col-xs-3">
+   <!-- img src="img/icons/lmg_earth_lodges.png" alt="earth lodges" class="img-responsive subNavIcon" / -->
+   
+   <div class="subNavIcon nav-item">
+   <img src="https://zsj-php7/wheel/img/icons_cropped/lmg_earth_lodges.png" alt="earth lodges" class="img-responsive subNavIcon" />
+   <h3>earth lodges</h3>
+   </div>
+   
+   
+   </div>
+      </div><!-- /nav group -->
+   <!-- div onclick="updateAppearance(3);" value="-270" class="nav-item nav_button quad_label quad_label_3">
+   <h2>Winter</h2>
+   </div -->
+   
+	<div data-toggle="Winter_introduction" class="col-xs-3 quad_label quad_label_3 nav-item nav_button" onclick="updateAppearance(3);" value="-270" >
+		<h2>Winter</h2>
+	</div>
+
+      <!-- img class="img-responsive" src="img/wheel_large_shadow.png" alt="wheel" id="wheel_img"/ -->
+   </div>
+   <!-- old testing buttons
+   <button class="nav_button" value="0">Spring</button>
+   <button class="nav_button" value="-90">Summer</button>
+   <button class="nav_button" value="-180">Fall</button>
+   <button class="nav_button" value="90">Winter</button>
+   -->
+
+  </div>
+  </div><!-- /wheel row -->
+
+<div class="row subNavContent">
+<div class="col-xs-12">
+
+</div>
+</div><!-- subNavContent icons row -->
+
+<div class="row contentRow">
+<div class="col-xs-12">
+<div class="inner">
+	<div class="contentRow-content">
+	<div class="ajaxContent">
+		<h3>Loading...</h3>
+	</div>
+	</div>
+
+<!-- div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span>
+</div -->	
+</div>
+</div>
+</div><!-- content row -->
+
+
+
+
+
+  
+  <div class="toolbar">
+  <span class="glyphicon glyphicon-minus-sign changeFontSize"></span>
+  <span class="glyphicon glyphicon-plus-sign changeFontSize"></span>
+  <span class="glyphicon glyphicon-volume-up toggleVolume"></span>
+  
+  </div>
+  
+  </div><!-- /container -->
+	<style>
+	/* this will prevent scrolling when the element is rotated, it also alleviates the Chrome console issue about element being treated as passive  */
+		#wheel{
+			touch-action: none;
+		}
+	</style>
+  <script>
+  
+$(document).ready(function(){
+	//preload audio
+	
+	var playAudio=true;
+	
+	var wheelAudio = document.createElement('audio');
+    wheelAudio.setAttribute('src', 'media/fx/wheelsnd.mp3');
+	
+	var dropletAudio = document.createElement('audio');
+    dropletAudio.setAttribute('src', 'media/fx/drop_click.mp3');
+	
+	var fluteAudio = document.createElement('audio');
+    fluteAudio.setAttribute('src', 'media/fx/moresnd_flute.mp3');
+	
+	var musicAudio = document.createElement('audio');
+    musicAudio.setAttribute('src', 'media/music/lmg.mp3');
+    
+    musicAudio.addEventListener('ended', function() {
+       // this.play();
+    }, false);
+	
+	
+	//preload all of the content, this would be for kiosk version. Web version make a function to load on demand
+	fetchIntroPost();
+	//disabled for designing as it slows down load!
+	fetchBlogPosts();
+	
+	//updateAppearance(0);
+	
+	wheelSpun=false;
+	$(".nav_button").click(function() {
+		//first load the introductory blog post
+		$('.ajaxContent').hide();
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		//stops the animation and animates to value of button
+		//clearInterval(interval);
+		$('#wheel').stop();
+		getAngle();
+		if (playAudio) wheelAudio.play();
+		//makes the spinning slightly more interesting and sequential
+		currentAngle=parseInt($(this).attr("value"));
+		if (wheelSpun){
+			if (currentAngle==0) currentAngle="-360";
+		}
+		$("#wheel").rotate({
+			angle:"-90",
+			animateTo: parseInt(currentAngle),
+			duration:3000,
+			easing: $.easing.easeInOutSine,
+			easing: $.easing.easeInOutCubic,
+			callback: function(){ 
+				wheelSpun=true;
+				getAngle();
+				if (playAudio){
+					wheelAudio.pause();
+					musicAudio.play(); 
+				}
+			
+			}
+			});
+		//reset the angle here so it doesn't jump around when it moves
+		//angle=parseInt($(this).attr("value"));
+		//
+		
+		//collapseNav();
+		
+	});
+	/*
+	$(".icon_button").click(function() 
+		console.log($(this).attr('data-toggle'));
+		$('.ajaxContent').fadeOut();
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+	});
+	*/
+	$(document).off('click', '.changeFontSize').on('click', '.changeFontSize',function(e) {
+		if ($(this).hasClass('glyphicon-plus-sign')){
+			$( ".contentRow-content" ).animate({"font-size": "+=50%"}, 500);
+		}
+		else $( ".contentRow-content" ).animate({"font-size": "-=50%"}, 500);
+	});
+		
+	$(document).off('click', '.toggleVolume').on('click', '.toggleVolume',function(e) {
+		if ($(this).hasClass('glyphicon-volume-up')){
+			playAudio=false;
+			$(this).removeClass('glyphicon-volume-up');
+			$(this).addClass('glyphicon-volume-off');
+			musicAudio.pause();
+			wheelAudio.pause();
+		}
+		else {
+			playAudio=true;
+			$(this).removeClass('glyphicon-volume-off');
+			$(this).addClass('glyphicon-volume-up');
+			musicAudio.play();
+		}
+	});
+	
+	$(document).off('click', '.icon_button').on('click', '.icon_button',function(e) {
+		//
+	//	console.log($(this).attr('data-toggle'));
+		$('.ajaxContent').hide();
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		$('.icon_button').removeClass('subnav_active');
+		$(this).addClass('subnav_active');
+		
+		if (playAudio) dropletAudio.play();
+		
+	});
+	
+	$(".contentRow_expandBtn").click(function() {
+		if (playAudio) fluteAudio.play();
+		//console.log($(this).hasClass('expanded'));
+		if ($(this).hasClass('expanded')){
+			collapseNav();
+			$(this).removeClass('expanded');
+		}
+		else{
+			expandNav();
+			$(this).addClass('expanded');
+		}
+		
+	});
+	
+	var collapsedContent=$('.contentRow_expandBtn').html();
+	
+	function collapseNav(){
+		$( ".contentRow-content" ).animate({"height": "39%"}, 1000);
+		$('.contentRow_expandBtn').html(collapsedContent);
+	}
+	
+	function expandNav(){
+		$( ".contentRow-content" ).animate({"height": "74%"}, 1000);
+		$('.contentRow_expandBtn').html('<span class="btn btn-orange"><span class="glyphicon glyphicon-triangle-top"></span> Collapse</span>');
+	}
+	
+	
+	var degs = 0,
+	velocity = 0,
+	$target = $('#wheel'),
+	frameRateMS = 1000/60,
+	inertiaMotion = false;
+
+	var handleTouchyRotate = function (e, phase, $target, data) {
+	switch (phase) {
+		case 'start':
+			inertiaMotion = false;
+			break;
+		case 'move':
+			degs += data.degreeDelta;
+			rotate(degs);
+			break;
+		case 'end':
+			inertiaMotion = true;
+			velocity = data.velocity;
+			releaseRadius =
+			spin(velocity);
+	}
+	//console.log(data);
+	getAngle(true);
+	};
+
+	var spin = function (velocity) {
+	// note that touchy returns velocity as degrees per millisecond only for touchy-rotate
+	degs += velocity * frameRateMS;
+	degs = degs > 359.99 ? 0 : degs;
+	rotate(degs);
+	if (inertiaMotion && Math.abs(velocity) > 0.001) {
+		setTimeout(function () {
+			//this was originally .99, lowering it changes the inertia
+			spin(velocity * 0.59);
+		}, frameRateMS);
+	}
+	else {
+		velocity = 0;
+	}
+	};
+
+	var rotate = function (degrees) {
+		$target.css('webkitTransform','rotate3d(0,0,1,'+ degrees +'deg)');
+		getAngle(true);
+	//console.log(degrees);
+	};
+
+	$('#wheel_img').bind('touchy-rotate', handleTouchyRotate);
+});
+			
+	function getAngle(doUpdates){
+		//console.log(doUpdates);
+		if (!doUpdates) doUpdates=false;
+		var el = document.getElementById("wheel");
+		var st = window.getComputedStyle(el, null);
+		var tr = st.getPropertyValue("-webkit-transform") ||
+         st.getPropertyValue("-moz-transform") ||
+         st.getPropertyValue("-ms-transform") ||
+         st.getPropertyValue("-o-transform") ||
+         st.getPropertyValue("transform") ||
+         "FAIL";
+
+		// With rotate(30deg)...
+		// matrix(0.866025, 0.5, -0.5, 0.866025, 0px, 0px)
+		//console.log('Matrix: ' + tr);
+
+		// rotation matrix - http://en.wikipedia.org/wiki/Rotation_matrix
+
+		var values = tr.split('(')[1].split(')')[0].split(',');
+		var a = values[0];
+		var b = values[1];
+		var c = values[2];
+		var d = values[3];
+
+		var scale = Math.sqrt(a*a + b*b);
+
+		//console.log('Scale: ' + scale);
+
+		// arc sin, convert from radians to degrees, round
+		var sin = b/scale;
+		// next line works for 30deg but not 130deg (returns 50);
+		// var angle = Math.round(Math.asin(sin) * (180/Math.PI));
+		var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+
+		//console.log('Rotate: ' + angle + 'deg');
+		
+		//added IF statement here so it only updates when we want it to
+		if (doUpdates){
+			if (angle<=45 && angle>-45) {
+				//console.log('spring');
+				updateAppearance(0);
+			}
+			if (angle<=-45) {
+				//console.log('summer');
+				updateAppearance(1);
+			}
+			
+			if (angle<-137 || angle>=145){
+				//console.log('Fall');
+				updateAppearance(2);
+			}
+			
+			if (angle<145 && angle>45){
+				//console.log('winter');
+				updateAppearance(3);
+			}
+		}
+		
+		
+		
+	};
+	
+	function updateAppearance(quad){
+		$('.quad_label').removeClass('quad_active');
+		$('.quad_label_'+quad).addClass('quad_active');
+		var items=$('.Content'+quad+'-navs').html();
+		$('.subNavContent').html(items);
+	}
+	
+	
+	function fetchIntroPost(){
+		
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').html('<div class="ajaxContent"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//find by data-rel lightbox from Wordpress and add ColorBox
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40546/?_jsonp=?"
+		});
+		
+		
+	}
+/*
+	this is what the kiosk should use to preload everything
+ */
+	function fetchBlogPosts(){
+
+						//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Spring_introduction"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40569/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Spring_planting"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40571/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Spring_gathering_willows"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40572/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Spring_tobacco_ceremony"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40577/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Spring_hunting"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40579/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+								//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Summer_introduction"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40584/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Summer_gardening"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40585/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Summer_hunting"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40586/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Summer_gathering"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40616/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Summer_celebrations"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40625/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+								//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Fall_introduction"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40917/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Fall_hunting"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40924/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Fall_gathering"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40926/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Fall_harvesting"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40929/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Fall_trade"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40934/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+								//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Winter_introduction"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40945/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Winter_tipis"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40960/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Winter_mobility"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40987/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Winter_toys_and_games"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40990/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+				//$(document).ready(function() { 
+		$.ajax({
+			async:true,
+			dataType:"jsonp",
+			success:function (data, textStatus) {
+				//console.log(data);
+				$('.wp-title').text(data.title);
+				//$('.wp-author').text('By '+data.author.name);
+				//$('.wp-content').html(data.content);
+				originalContent=data.content;
+				//$('.blog-loading').hide();
+				$('.contentRow-content').append('<div class="ajaxContent hidden Winter_earth_lodges"><h3>'+data.title+'</h3>'+data.content+'</div>');
+				
+			},
+			complete: function(){
+				$('.video-container').addClass('youtube-container');
+				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
+				$('[data-rel^="lightbox"]').addClass('ajaxPic_40546');
+				initColorBox('40546');
+				
+				//download the attachments
+				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
+					console.log($(this).attr('src'));
+				});
+			},
+			url:"https://centerofthewest.org/wp-json/posts/40993/?_jsonp=?"
+		});
+		//return false;
+		//});
+	
+					
+	}
+	
+	function initColorBox(blogid){
+		//colorbox stuff
+		cbw="100%";
+		cbh="75%";
+		//override if screen wider than tall
+		if ($( window ).width()>=$( window ).height()){
+			cbw="80%";
+			cbh="90%";
+		}
+		var $gallery=$(".ajaxPic_"+blogid).colorbox({rel:'ajaxPic',width:cbw,height:cbh,opacity:0.75,current:"Viewing picture {current} of {total}"});
+	}
+	
+	
+  </script>
+
+</body>
+</html>
