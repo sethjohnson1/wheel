@@ -556,7 +556,6 @@ $(document).ready(function(){
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
-<<<<<<< HEAD
 				//actually, no need for colorBox!
 				//$('.<?=$title.'_'.$k?>').find('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$sub['blogid']?>');
 				//initColorBox('<?=$sub['blogid']?>');
@@ -564,16 +563,6 @@ $(document).ready(function(){
 			error: function (xhr, ajaxOptions, thrownError) {
 				console.log(xhr.status);
 				console.log(thrownError);
-=======
-				//definitely a flaw in this logic, since all lightbox data-rel will be cascaded with ajaxPic_class....
-				$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>');
-				initColorBox('<?=$show['blogid']?>');
-				
-				//download the attachments
-				$(document).find('[class^="wp-image-"]').each(function( index,element ) {
-					console.log($(this).attr('src'));
-				});
->>>>>>> a60b72a6f27d7b5796d44280e8a53979ad42b080
 			},
 			url:"https://centerofthewest.org/wp-json/posts/<?=$sub['blogid']?>/?_jsonp=?"
 		});
