@@ -166,7 +166,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
    ?>
 
    <div data-id="<?=$sub['blogid']?>" data-toggle="<?=$title.'_'.$k?>" class="nav-item icon_button col-xs-3">
-   <!-- img src="img/icons/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" / -->
+
    
    <div class="subNavIcon nav-item">
    <img src="img/icons_cropped/<?=$show['abbr'].'_'.$k.'.png'?>" alt="<?=str_replace("_"," ",$k)?>" class="img-responsive subNavIcon" />
@@ -177,9 +177,7 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
    </div>
    <?php endforeach ?>
    </div><!-- /nav group -->
-   <!-- div onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" class="nav-item nav_button quad_label quad_label_<?=$cnt?>">
-   <h2><?=str_replace("_"," ",$title)?></h2>
-   </div -->
+
    
 	<div data-id="<?=$intro_id?>" data-toggle="<?=$title?>_introduction" class="col-xs-3 quad_label quad_label_<?=$cnt?> nav-item nav_button" onclick="updateAppearance(<?=$cnt?>);" value="<?=$angle_val?>" >
 		<h2><?=str_replace("_"," ",$title)?></h2>
@@ -188,14 +186,9 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
    <?php 
    $cnt++;
    endforeach; ?>
-   <!-- img class="img-responsive" src="img/wheel_large_shadow.png" alt="wheel" id="wheel_img"/ -->
+
    </div>
-   <!-- old testing buttons
-   <button class="nav_button" value="0">Spring</button>
-   <button class="nav_button" value="-90">Summer</button>
-   <button class="nav_button" value="-180">Fall</button>
-   <button class="nav_button" value="90">Winter</button>
-   -->
+
 
   </div>
   </div><!-- /wheel row -->
@@ -205,19 +198,19 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
 
 </div>
 </div><!-- subNavContent icons row -->
+</div><!-- /container-fluid -->
+<div class="container-fluid content-container">
+<div class="contentRow">
 
-<div class="row contentRow">
-<div class="col-xs-12">
 <div class="inner">
 	<div class="contentRow-content">
-	<div class="ajaxContent">
+	<div class="ajaxContent introContent">
 		<h3>Loading...</h3>
 	</div>
 	</div>
 
 <!-- div class="contentRow_expandBtn"><span class=" btn btn-orange"><span class="glyphicon glyphicon-triangle-bottom"></span> Expand</span>
 </div -->	
-</div>
 </div>
 </div><!-- content row -->
 
@@ -280,16 +273,19 @@ $(document).ready(function(){
 		//preload all of the content for the kiosk
 		fetchIntroPost();
 		//disable for designing as it slows down load!
-		fetchBlogPosts();
+		
 	}
 	*/
-	
+	fetchBlogPosts();
+	fetchIntroPost();
 	updateAppearance(0);
 	
 	wheelSpun=false;
 	$(".nav_button").click(function() {
+		//first load the introductory blog post
 		$('.ajaxContent').hide();
-		fetchBlogPost($(this).attr('data-toggle'),$(this).attr('data-id'));
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
 		//stops the animation and animates to value of button
 		//clearInterval(interval);
 		$('#wheel').stop();
@@ -354,10 +350,15 @@ $(document).ready(function(){
 	});
 	
 	$(document).off('click', '.icon_button').on('click', '.icon_button',function(e) {
+		//load the content if on dev server
+		/*if (document.location.href=='https://sv-php7/wheel/'){
+			fetchBlogPost($(this).attr('data-toggle'),$(this).attr('data-id'));
+		}
+*/
+		console.log($(this).attr('data-toggle'));
 		$('.ajaxContent').hide();
-		fetchBlogPost($(this).attr('data-toggle'),$(this).attr('data-id'));
-		//$('.'+$(this).attr('data-toggle')).fadeIn();
-		//$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		$('.'+$(this).attr('data-toggle')).fadeIn();
+		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
 		$('.icon_button').removeClass('subnav_active');
 		$(this).addClass('subnav_active');
 		
@@ -511,50 +512,9 @@ $(document).ready(function(){
 		$('.subNavContent').html(items);
 	}
 	
-	/*  **** UPDATE THIS NOT TO DUPLICATE  */
-	function fetchBlogPost(classname,blogid){
-		if (document.location.href=='https://sv-php7/wheel/'){	
-			$.ajax({
-				async:true,
-				dataType:"jsonp",
-				success:function (data, textStatus) {
-					//console.log(data);
-					$('.wp-title').text(data.title);
-					//$('.wp-author').text('By '+data.author.name);
-					//$('.wp-content').html(data.content);
-					originalContent=data.content;
-					//$('.blog-loading').hide();
-					$('.contentRow-content').append('<div class="ajaxContent hidden '+classname+'"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
-					
-				},
-				complete: function(){
-					$('.video-container').addClass('youtube-container');	
-					$("img").removeAttr('srcset');
-					$("img").removeAttr('sizes');
-					$('.'+classname).fadeIn();
-					$('.'+classname).removeClass('hidden');
-					
-				},
-				error: function (xhr, ajaxOptions, thrownError) {
-					console.log(xhr.status);
-					console.log(thrownError);
-				},
-				url:"https://centerofthewest.org/wp-json/posts/"+blogid+"/?_jsonp=?"
-			});
-		}
-		$('.'+classname).fadeIn();
-		$('.'+classname).removeClass('hidden');
-	}
 	
-/*
-	this is what the kiosk should use to preload everything
-	yeah but the piece of shit API sometimes doesn't work, so this is not a good idea.
-	Probably better to just load by clicking on everything
- */
-	function fetchBlogPosts(){
-
-		<?php foreach ($show['options'] as $title=>$v): ?>
-		<?php foreach ($v as $k=>$sub): ?>
+	function fetchIntroPost(){
+		
 		$.ajax({
 			async:true,
 			dataType:"jsonp",
@@ -565,30 +525,77 @@ $(document).ready(function(){
 				//$('.wp-content').html(data.content);
 				originalContent=data.content;
 				//$('.blog-loading').hide();
-				$('.contentRow-content').append('<div class="ajaxContent hidden <?=$title.'_'.$k?>"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
+				$('.introContent').html('<h3 class="title">'+data.title+'</h3>'+data.content);
 				
 			},
 			complete: function(){
 				$('.video-container').addClass('youtube-container');
-				
+				//remove these extra attributes or the images won't pull local copy
 				$("img").removeAttr('srcset');
 				$("img").removeAttr('sizes');
-				
-				//actually, no need for colorBox!
-				//$('.<?=$title.'_'.$k?>').find('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$sub['blogid']?>');
-				//initColorBox('<?=$sub['blogid']?>');
+				//find by data-rel lightbox from Wordpress and add ColorBox
+				//don't do this for Intro now, because its used elsewhere and this makes it duplicate
+				//but we don't need colorBox!
+				//$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>_intro');
+				//initColorBox('<?=$show['blogid']?>_intro');
 			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				console.log(xhr.status);
-				console.log(thrownError);
-			},
-			url:"https://centerofthewest.org/wp-json/posts/<?=$sub['blogid']?>/?_jsonp=?"
+			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
 		});
+		
+		
+	}
 
-	
+/*
+	this is what the kiosk should use to preload everything
+	yeah but the piece of shit API sometimes doesn't work, so this is not a good idea.
+	Probably better to just load by clicking on everything
+ */
+	function fetchBlogPosts(){
+		var articles={
+		<?php foreach ($show['options'] as $title=>$v): ?>
+		<?php foreach ($v as $k=>$sub): ?>
+			'<?=$title.'_'.$k?>':<?=$sub['blogid']?>,
 		<?php endforeach ?>
 		<?php endforeach ?>
+		};
+		//console.log(articles);
+		$.each(articles, function( index, value ) {
+			fetchPost(index,value);
+		});
+		
 	
+	}
+	
+	function fetchPost(classname,blogid){
+		//console.log($(classname).html());
+		if (!$(classname).html()){
+		$.ajax({
+				async:true,
+				dataType:"jsonp",
+				success:function (data, textStatus) {
+					//console.log(data);
+					$('.contentRow-content').append('<div class="ajaxContent hidden '+classname+'"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
+					
+				},
+				complete: function(){
+					$('.video-container').addClass('youtube-container');
+					
+					$("img").removeAttr('srcset');
+					$("img").removeAttr('sizes');
+					//now run it again! no not necessary now
+					//fetchPost(classname,blogid);
+					//actually, no need for colorBox!
+					//$('.<?=$title.'_'.$k?>').find('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$sub['blogid']?>');
+					//initColorBox('<?=$sub['blogid']?>');
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					console.log(xhr.status);
+					console.log(thrownError);
+				},
+				url:"https://centerofthewest.org/wp-json/posts/"+blogid+"/?_jsonp=?"
+			});
+			
+		}
 	}
 
 	

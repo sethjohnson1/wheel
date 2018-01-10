@@ -3,9 +3,15 @@ body{
 	background-image:url('../img/backgrounds/old_leather.jpg');
 }
 
+.content-container{
+	background-color: $white-rgba;
+}
+
 blockquote{
 	font-size: inherit;
 }
+
+
 
 .titleRow{
 	h1{
@@ -101,21 +107,28 @@ blockquote{
 }
 */
 
-.contentRow{
-	//min-height:10%;
-	margin-bottom:2%;
-	margin-right:-30px;
-	margin-left:-30px;
-	.inner{
-		background-image: url('../img/backgrounds/splattered_paper_1920_wide.jpg');
+
+.content-container{
+	//background-image: url('../img/backgrounds/splattered_paper_1920_wide.jpg');
 		//width:97%;
 		//margin:1%;
-		background-color:$white-rgba;
+	background-color:$white-rgba;
+}
+.contentRow{
+	//min-height:10%;
+	/*margin-bottom:2%;
+	margin-right:-30px;
+	margin-left:-30px;
+	overflow: hidden;
+	*/
+	//width:90%;
+	.inner{
+		
 		position: relative;
 	}
 	
 	.contentRow-content{
-		background-color:$white-rgba;
+		//background-color:$white-rgba;
 		//you must also change this in the JS
 		height:61%;
 		overflow-y: scroll;
@@ -212,7 +225,7 @@ blockquote{
 		left:-85px;
 		top:10px;
 	}
-	width: 104%;
+	width: 100%;
     background-color: white;
     background-color: $white-rgba;
 	//background-image: url('../img/backgrounds/splattered_paper_1920_wide.jpg');
