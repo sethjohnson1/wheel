@@ -1,6 +1,8 @@
 body{
 	background-color:#ded9d5;
 	background-image:url('../img/backgrounds/old_leather.jpg');
+	height:1920px;
+	overflow:hidden;
 }
 
 .content-container{
@@ -28,9 +30,6 @@ blockquote{
 	position: relative;
 	top:-20px;
 	@include rotate(0deg);
-	
-
-	
 }
 
 #wheel>img{

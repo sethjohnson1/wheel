@@ -276,16 +276,19 @@ $(document).ready(function(){
 		
 	}
 	*/
-	fetchBlogPosts();
-	fetchIntroPost();
+	if (document.location.href=='https://sv-php7/wheel/'){
+		fetchBlogPosts();
+		fetchIntroPost();
+		
+	}
 	updateAppearance(0);
-	
 	wheelSpun=false;
 	$(".nav_button").click(function() {
 		//first load the introductory blog post
 		$('.ajaxContent').hide();
-		$('.'+$(this).attr('data-toggle')).fadeIn();
-		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		//using first() because when you save it makes two copies.. quick and dirty
+		$('.'+$(this).attr('data-toggle')).first().fadeIn();
+		$('.'+$(this).attr('data-toggle')).first().removeClass('hidden');
 		//stops the animation and animates to value of button
 		//clearInterval(interval);
 		$('#wheel').stop();
@@ -355,10 +358,10 @@ $(document).ready(function(){
 			fetchBlogPost($(this).attr('data-toggle'),$(this).attr('data-id'));
 		}
 */
-		console.log($(this).attr('data-toggle'));
+		//console.log($(this).attr('data-toggle'));
 		$('.ajaxContent').hide();
-		$('.'+$(this).attr('data-toggle')).fadeIn();
-		$('.'+$(this).attr('data-toggle')).removeClass('hidden');
+		$('.'+$(this).attr('data-toggle')).first().fadeIn();
+		$('.'+$(this).attr('data-toggle')).first().removeClass('hidden');
 		$('.icon_button').removeClass('subnav_active');
 		$(this).addClass('subnav_active');
 		
@@ -553,7 +556,9 @@ $(document).ready(function(){
 	function fetchBlogPosts(){
 		var articles={
 		<?php foreach ($show['options'] as $title=>$v): ?>
-		<?php foreach ($v as $k=>$sub): ?>
+		<?php foreach ($v as $k=>$sub): 
+			//if ($k=='introduction') continue;
+		?>
 			'<?=$title.'_'.$k?>':<?=$sub['blogid']?>,
 		<?php endforeach ?>
 		<?php endforeach ?>
