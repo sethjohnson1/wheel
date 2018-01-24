@@ -520,15 +520,15 @@ $(document).ready(function(){
 		
 		$.ajax({
 			async:true,
-			dataType:"jsonp",
+			dataType:"json",
 			success:function (data, textStatus) {
 				//console.log(data);
-				$('.wp-title').text(data.title);
+				$('.wp-title').text(data.title.rendered);
 				//$('.wp-author').text('By '+data.author.name);
 				//$('.wp-content').html(data.content);
-				originalContent=data.content;
+				originalContent=data.content.rendered;
 				//$('.blog-loading').hide();
-				$('.introContent').html('<h3 class="title">'+data.title+'</h3>'+data.content);
+				$('.introContent').html('<h3 class="title">'+data.title.rendered+'</h3>'+data.content.rendered);
 				
 			},
 			complete: function(){
@@ -542,7 +542,7 @@ $(document).ready(function(){
 				//$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>_intro');
 				//initColorBox('<?=$show['blogid']?>_intro');
 			},
-			url:"https://centerofthewest.org/wp-json/posts/<?=$show['blogid']?>/?_jsonp=?"
+			url:"https://centerofthewest.org/wp-json/wp/v2/exhibit/<?=$show['blogid']?>"
 		});
 		
 		
@@ -576,10 +576,10 @@ $(document).ready(function(){
 		if (!$(classname).html()){
 		$.ajax({
 				async:true,
-				dataType:"jsonp",
+				dataType:"json",
 				success:function (data, textStatus) {
 					//console.log(data);
-					$('.contentRow-content').append('<div class="ajaxContent hidden '+classname+'"><h3 class="title">'+data.title+'</h3>'+data.content+'</div>');
+					$('.contentRow-content').append('<div class="ajaxContent hidden '+classname+'"><h3 class="title">'+data.title.rendered+'</h3>'+data.content.rendered+'</div>');
 					
 				},
 				complete: function(){
@@ -597,7 +597,10 @@ $(document).ready(function(){
 					console.log(xhr.status);
 					console.log(thrownError);
 				},
-				url:"https://centerofthewest.org/wp-json/posts/"+blogid+"/?_jsonp=?"
+				//v1.0 API, dataType must be jsonp
+				//url:"https://centerofthewest.org/wp-json/posts/"+blogid+"/?_jsonp=?"
+				//v2 API
+				url:"https://centerofthewest.org/wp-json/wp/v2/exhibit/"+blogid
 			});
 			
 		}
