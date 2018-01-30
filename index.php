@@ -54,63 +54,75 @@ $lmg['Winter']['earth_lodges']=['blogid'=>'40993'];
 
 //learnb
 $bp=[];
-$bp['Preparations']['the_buffalo_tradition']=['blogid'=>'40255'];
-$bp['Preparations']['buffalo_dances']=['blogid'=>'40255'];
-$bp['Preparations']['organizing_the_hunt']=['blogid'=>'40255'];
-$bp['The_Hunt']['dog_days']=['blogid'=>'40255'];
-$bp['The_Hunt']['horses']=['blogid'=>'40255'];
-$bp['The_Hunt']['decline_of_buffalo']=['blogid'=>'40255'];
-$bp['Back_to_Camp']['dividing_the_kill']=['blogid'=>'40255'];
-$bp['Back_to_Camp']['preparing_the_meat']=['blogid'=>'40255'];
-$bp['Back_to_Camp']['tanning_the_hide']=['blogid'=>'40255'];
-$bp['Back_to_Camp']['using_everything']=['blogid'=>'40255'];
-$bp['Giving_Thanks']['symbolism']=['blogid'=>'40255'];
-$bp['Giving_Thanks']['the_buffalo_today']=['blogid'=>'40255'];
+$bp['Preparation']['introduction']=['blogid'=>'42250'];
+$bp['Preparation']['the_buffalo_tradition']=['blogid'=>'42258'];
+$bp['Preparation']['buffalo_dances']=['blogid'=>'42264'];
+$bp['Preparation']['organizing_the_hunt']=['blogid'=>'42267'];
+$bp['The_Hunt']['introduction']=['blogid'=>'42271'];
+$bp['The_Hunt']['dog_days']=['blogid'=>'42273'];
+$bp['The_Hunt']['horses']=['blogid'=>'42277'];
+$bp['The_Hunt']['decline_of_buffalo']=['blogid'=>'42280'];
+$bp['Back_to_Camp']['introduction']=['blogid'=>'42455'];
+$bp['Back_to_Camp']['dividing_the_kill']=['blogid'=>'42458'];
+$bp['Back_to_Camp']['preparing_the_meat']=['blogid'=>'42459'];
+$bp['Back_to_Camp']['tanning_the_hide']=['blogid'=>'42466'];
+$bp['Back_to_Camp']['using_everything']=['blogid'=>'42471'];
+$bp['Giving_Thanks']['introduction']=['blogid'=>'42478'];
+$bp['Giving_Thanks']['symbolism']=['blogid'=>'42480'];
+$bp['Giving_Thanks']['the_buffalo_today']=['blogid'=>'42483'];
 
 //learnc
 $hc=[];
-$hc['Child']['hills_of_life']=['blogid'=>'40255'];
-$hc['Child']['naming']=['blogid'=>'40255'];
-$hc['Child']['first_powwow']=['blogid'=>'40255'];
-$hc['Child']['continuity']=['blogid'=>'40255'];
-$hc['Youth']['boys_and_girls_lodges']=['blogid'=>'40255'];
-$hc['Youth']['first_hunt']=['blogid'=>'40255'];
-$hc['Youth']['first_hide']=['blogid'=>'40255'];
-$hc['Youth']['graduation']=['blogid'=>'40255'];
-$hc['Adult']['buffalo_woman_society']=['blogid'=>'40255'];
-$hc['Adult']['mens_societies']=['blogid'=>'40255'];
-$hc['Adult']['warriors']=['blogid'=>'40255'];
-$hc['Adult']['leadership']=['blogid'=>'40255'];
-$hc['Elder']['sacred_knowledge']=['blogid'=>'40255'];
-$hc['Elder']['age_is_a_blessing']=['blogid'=>'40255'];
-$hc['Elder']['sun_dance']=['blogid'=>'40255'];
-$hc['Elder']['grandparents']=['blogid'=>'40255'];
+$hc['Child']['introduction']=['blogid'=>'41042'];
+$hc['Child']['hills_of_life']=['blogid'=>'41259'];
+$hc['Child']['naming']=['blogid'=>'41551'];
+$hc['Child']['first_powwow']=['blogid'=>'41555'];
+$hc['Child']['continuity']=['blogid'=>'41556'];
+$hc['Youth']['introduction']=['blogid'=>'41558'];
+$hc['Youth']['boys_and_girls_lodges']=['blogid'=>'41561'];
+$hc['Youth']['first_hunt']=['blogid'=>'41568'];
+$hc['Youth']['first_hide']=['blogid'=>'41572'];
+$hc['Youth']['graduation']=['blogid'=>'41575'];
+$hc['Adult']['introduction']=['blogid'=>'41586'];
+$hc['Adult']['buffalo_woman_society']=['blogid'=>'41589'];
+$hc['Adult']['mens_societies']=['blogid'=>'41593'];
+$hc['Adult']['warriors']=['blogid'=>'41610'];
+$hc['Adult']['leadership']=['blogid'=>'41613'];
+$hc['Elder']['introduction']=['blogid'=>'41631'];
+$hc['Elder']['sacred_knowledge']=['blogid'=>'41638'];
+$hc['Elder']['age_is_a_blessing']=['blogid'=>'41657'];
+$hc['Elder']['sun_dance']=['blogid'=>'41661'];
+$hc['Elder']['grandparents']=['blogid'=>'41665'];
 
 //learnd
 $tcm=[];
-$tcm['Community']['sovereignty']=['blogid'=>'40255'];
-$tcm['Community']['reservation_life']=['blogid'=>'40255'];
-$tcm['Community']['economic_issues']=['blogid'=>'40255'];
-$tcm['Community']['tribal_government']=['blogid'=>'40255'];
-$tcm['Land']['reservations']=['blogid'=>'40255'];
-$tcm['Land']['urbanization_and_relocation']=['blogid'=>'40255'];
-$tcm['Land']['water_rights']=['blogid'=>'40255'];
-$tcm['Land']['sacred_lands']=['blogid'=>'40255'];
-$tcm['Spirituality']['passing_on_traditions']=['blogid'=>'40255'];
-$tcm['Spirituality']['search_for_hope']=['blogid'=>'40255'];
-$tcm['Spirituality']['reclaiming_sacred_objects']=['blogid'=>'40255'];
-$tcm['Spirituality']['recovery']=['blogid'=>'40255'];
-$tcm['Identity']['tribal_identity']=['blogid'=>'40255'];
-$tcm['Identity']['language']=['blogid'=>'40255'];
-$tcm['Identity']['boarding_schools']=['blogid'=>'40255'];
-$tcm['Identity']['contemporary_education']=['blogid'=>'40255'];
+$tcm['Community']['introduction']=['blogid'=>'42017'];
+$tcm['Community']['sovereignty']=['blogid'=>'42018'];
+$tcm['Community']['reservation_life']=['blogid'=>'42023'];
+$tcm['Community']['economic_issues']=['blogid'=>'42025'];
+$tcm['Community']['tribal_government']=['blogid'=>'42026'];
+$tcm['Land']['introduction']=['blogid'=>'42027'];
+$tcm['Land']['reservations']=['blogid'=>'42028'];
+$tcm['Land']['urbanization_and_relocation']=['blogid'=>'42029'];
+$tcm['Land']['water_rights']=['blogid'=>'42031'];
+$tcm['Land']['sacred_lands']=['blogid'=>'42032'];
+$tcm['Spirituality']['introduction']=['blogid'=>'41688'];
+$tcm['Spirituality']['passing_on_traditions']=['blogid'=>'41961'];
+$tcm['Spirituality']['search_for_hope']=['blogid'=>'41966'];
+$tcm['Spirituality']['reclaiming_sacred_objects']=['blogid'=>'41969'];
+$tcm['Spirituality']['recovery']=['blogid'=>'41972'];
+$tcm['Identity']['introduction']=['blogid'=>'41988'];
+$tcm['Identity']['tribal_identity']=['blogid'=>'41992'];
+$tcm['Identity']['language']=['blogid'=>'41997'];
+$tcm['Identity']['boarding_schools']=['blogid'=>'41999'];
+$tcm['Identity']['contemporary_education']=['blogid'=>'42016'];
 
 
 //set the show to anything here, use the first theme as the intro blogid (i.e. Spring intro)
-$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>$lmg];
-//$show=['title'=>'Buffalo and the People','abbr'=>'bp','options'=>$bp];
-//$show=['title'=>'Honor and Celebration','abbr'=>'hc','options'=>$hc];
-//$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','options'=>$tcm];
+//$show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>$lmg];
+//$show=['title'=>'Buffalo and the People','abbr'=>'bp','blogid'=>'42250','options'=>$bp];
+//$show=['title'=>'Honor and Celebration','blogid'=>'41042','abbr'=>'hc','options'=>$hc];
+$show=['title'=>'Adversity and Rewnewal','abbr'=>'tcm','blogid'=>'42017','options'=>$tcm];
 
 ?>
 <html>
@@ -128,6 +140,16 @@ $show=['title'=>'Land of Many Gifts','abbr'=>'lmg','blogid'=>'40569','options'=>
 <!-- script type="text/javascript" src="js/wheel.js"></script -->
 <title><?=$show['title']?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+<?php //quick style adjustments 
+	if ($show['abbr']=='bp' || $show['abbr']=='tcm'):
+?>
+.quad_label h2 {
+	font-size: 3.4vw;
+}
+<?php endif ?>
+</style>
+
 </head>
 <body>
 
