@@ -542,7 +542,7 @@ $(document).ready(function(){
 				//$('[data-rel^="lightbox"]').addClass('ajaxPic_<?=$show['blogid']?>_intro');
 				//initColorBox('<?=$show['blogid']?>_intro');
 			},
-			url:"https://centerofthewest.org/wp-json/wp/v2/exhibit/<?=$show['blogid']?>"
+			url:"https://centerofthewest.org/?rest_route=/wp/v2/exhibit/<?=$show['blogid']?>"
 		});
 		
 		
@@ -600,7 +600,7 @@ $(document).ready(function(){
 				//v1.0 API, dataType must be jsonp
 				//url:"https://centerofthewest.org/wp-json/posts/"+blogid+"/?_jsonp=?"
 				//v2 API
-				url:"https://centerofthewest.org/wp-json/wp/v2/exhibit/"+blogid
+				url:"https://centerofthewest.org/?rest_route=/wp/v2/exhibit/"+blogid
 			});
 			
 		}
